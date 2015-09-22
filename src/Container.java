@@ -26,7 +26,7 @@ public class Container {
     }
     
     public void deleteReference(Reference r) {
-        this.references.remove(r);
+        this.references.remove(r.getId());
     }
     
     public List<Reference> listReferences() {

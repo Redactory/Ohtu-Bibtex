@@ -26,6 +26,11 @@ public class Book extends Reference{
     @Override
     public void print() {
         
-        System.out.println("@book{");
+        System.out.println("@book{GA03,\n"
+                + "author = {" + this.author + "}, \n"
+                + "title = {" + this.title + "}, \n"
+                + "publisher = {" + this.publisher + "}, \n"
+                + "year = {" + this.year + "}, \n"
+                + "} \n");
     }
 }
