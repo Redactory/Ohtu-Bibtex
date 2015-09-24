@@ -1,5 +1,8 @@
+package reference;
+
 
 import java.util.Hashtable;
+import java.util.LinkedList;
 import java.util.List;
 
 /*
@@ -17,7 +20,7 @@ public class Container {
     private Hashtable<String, Reference> references;
     
     public Container() {
-        
+        references = new Hashtable<>();
     }
     
     // Add reference to reference list
@@ -30,7 +33,7 @@ public class Container {
     }
     
     public List<Reference> listReferences() {
-        
-        return null;
+        List<Reference> list = new LinkedList<Reference>(references.values()); 
+        return list;
     }
 }

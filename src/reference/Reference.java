@@ -1,3 +1,5 @@
+package reference;
+
 
 import java.util.Date;
 import java.util.UUID;
@@ -21,12 +23,20 @@ public class Reference {
         this.id = UUID.randomUUID().toString();
         this.timestamp = new Date();
     }
-    
+    /**
+     * 
+     * @return the id of the reference
+     */
     public String getId() {
         return this.id;
     }
     
-    public void print() {
+    public String toBibTex() {
+        return "reference " + id + " does not have BibTex format";
+    }
+    /*
+    public void print(){
         
     }
+    */
 }

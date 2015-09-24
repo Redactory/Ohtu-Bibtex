@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import reference.Reference;
+import reference.Container;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;

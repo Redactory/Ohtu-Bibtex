@@ -5,6 +5,11 @@
  */
 package ohtu.bibtex;
 
+import java.util.List;
+import reference.Book;
+import reference.Container;
+import reference.Reference;
+
 /**
  *
  * @author teemu
@@ -15,7 +20,18 @@ public class OhtuBibTex {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        //test
+        Container cont = new Container();
+        cont.addReference(new Book(1234,"Jaakko","Jaakon höpötykset","ACM"));
+        cont.addReference(new Book(2001,"Martti Laaksonen","Taide","DELTA"));
+        List<Reference> list = cont.listReferences();
+        for (Reference ref : list) {
+            System.out.println(ref.toBibTex());
+        }
+        System.out.println("////////////////////////////////////////////////");
+        //real code
+        
+        //TODO komentoriviUI
+        
     }
-    
 }
