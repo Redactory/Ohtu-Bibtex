@@ -52,16 +52,17 @@ public class BookTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
+    
     @Test
     public void testToBibTexHasCorrectFormat() {
         System.out.println("toBibTex");
-        Book instance = new Book(2011, "Jaakko Murmi", "Teokset 2", "ACM");
+        Book instance = new Book(2011, "Jaakko Nurmi", "Teokset 2", "ACM");
         String s = instance.toBibTex();
         //GA03 is temporarily id for all books
         //regex matching
-        int ret = matchRegex(s, "@book[{]GA03,([\\s]*[a-zA-Z]+[\\s]*=[\\s]*[{][^}]+[}],)+[\\s]*[}][\\s]*");
-        assertTrue("String is not in correct format", ret==s.length()-1);
+       boolean testVal = matchRegex(s, "@book[{]GA03,([\\s]*[a-zA-Z]+[\\s]*=" +
+               "[\\s]*[{][^}]+[}],)+[\\s]*[}][\\s]*");
+       assertTrue("String is not in BibTex format", testVal);
     }
 
     @Test
@@ -71,22 +72,22 @@ public class BookTest {
 
     
     /**
-     * Checks if the given string matches the given pattern and returns the 
-     * last index of the match. returns -1 if the pattern does not match.
+     * Checks if the given string matches the given pattern. 
+     * Returns true if the string matches exactly or false if it does not match.
      *
      * @param s
      * @param pattern
      * @return
      */
-    private int matchRegex(String s, String pattern) {
+    private boolean matchRegex(String s, String pattern) {
         Pattern p = Pattern.compile(pattern);
         Matcher matcher = p.matcher(s);
         if (matcher.find()) {
             if (matcher.start() != 0) {
-                return -1;
+                return false;
             }
-            return matcher.end()-1;
+            return (matcher.end()==s.length());
         }
-        return -1;
+        return false;
     }
 }
