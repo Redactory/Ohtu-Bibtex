@@ -1,3 +1,5 @@
+package Models;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,12 +10,21 @@
  *
  * @author teemu
  */
-public class Book extends Reference{
+public class Book extends Reference {
     
-    private int year;
+    private String id;
+    private Integer year;
     private String author;
     private String title;
     private String publisher;
+    
+    public Book() {
+        id = super.id;
+        this.year = 0;
+        this.author = "No Author";
+        this.title = "Book of Empty";
+        this.publisher = "Emptiness";
+    }
     
     public Book(int year, String author, String title,
                 String publisher) {
@@ -22,6 +33,23 @@ public class Book extends Reference{
         this.title = title;
         this.publisher = publisher;
     }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+    
     
     @Override
     public void print() {

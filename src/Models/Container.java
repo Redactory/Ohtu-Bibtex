@@ -1,3 +1,5 @@
+package Models;
+
 
 import java.util.Hashtable;
 import java.util.List;
@@ -17,20 +19,29 @@ public class Container {
     private Hashtable<String, Reference> references;
     
     public Container() {
-        
+        this.references = new Hashtable<String, Reference>();
     }
     
-    // Add reference to reference list
+    // Getter method for getting references-list.
+    public Hashtable getReferences() {
+        return references;
+    }
+    
+    // Add reference to reference to database.
     public void addReference(Reference r) {
-        this.references.put(r.getId(), r);
+        references.put(r.getId(), r);
     }
     
+    // Remove wanted reference from database.
     public void deleteReference(Reference r) {
         this.references.remove(r.getId());
     }
     
-    public List<Reference> listReferences() {
-        
-        return null;
+    // Method for listing references in database.
+    public void listReferences() {
+        for (String k : references.keySet()) {
+            Reference r = references.get(k);
+            r.print();
+        }
     }
 }
