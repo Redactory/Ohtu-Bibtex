@@ -52,8 +52,6 @@ public class UserInterface {
     
     // Method for adding book reference.
     public void addBookReference() {
-        Integer i = 0;
-        String s = "";
         Book book = new Book();
         
         System.out.println("Input mandatory fields for book referece \n");
@@ -61,24 +59,23 @@ public class UserInterface {
         System.out.println("Give year book is written: \n");
         
         // Add year to the book.
-        i = this.scanner.nextInt();
-        book.setYear(i);
+        Integer year = this.scanner.nextInt();
+        book.setYear(year);
         
         // Add author
         System.out.println("Give book author:\n");
-        s = this.scanner.next();
-        book.setAuthor(s);
+        String author = this.scanner.next();
+        book.setAuthor(author);
         
-        System.out.println("Now the title...");
         // Add title
         System.out.println("Give book title:\n");
-        s = this.scanner.next();
-        book.setAuthor(s);
+        String title = this.scanner.next();
+        book.setTitle(title);
         
         // Add publisher
         System.out.println("Give book publisher:\n");
-        s = this.scanner.next();
-        book.setAuthor(s);
+        String publisher = this.scanner.next();
+        book.setPublisher(publisher);
         
         container.addReference(book);
         
