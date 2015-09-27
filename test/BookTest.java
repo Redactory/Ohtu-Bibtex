@@ -6,7 +6,7 @@
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import reference.Book;
+import Models.Book;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -34,13 +34,13 @@ public class BookTest {
     @Before
     public void setUp() {
     }
-
+    
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of print method, of class Book.
+     * Test of toBibTex method, of class Book.
      */
     @Test
     public void testToBibTex() {
@@ -48,9 +48,6 @@ public class BookTest {
         Book instance = new Book(2011, "Jaakko Murmi", "", "ACM");
         String s = instance.toBibTex();
         //test correct format without taking fields into account
-
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
     @Test
@@ -70,7 +67,6 @@ public class BookTest {
         fail("The test case is a prototype.");
     }
 
-    
     /**
      * Checks if the given string matches the given pattern. 
      * Returns true if the string matches exactly or false if it does not match.

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import reference.Reference;
+import Models.Reference;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -54,11 +54,10 @@ public class ReferenceTest {
     /**
      * Test of print method, of class Reference.
      */
-    @Test
-    public void testToBibTex() {
-        System.out.println("toBibTex");
+    public void testPrint() {
+        System.out.println("print");
         Reference instance = new Reference();
-        instance.toBibTex();
+        instance.print();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

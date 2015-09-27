@@ -5,10 +5,11 @@
  */
 package ohtu.bibtex;
 
+
 import java.util.List;
-import reference.Book;
-import reference.Container;
-import reference.Reference;
+import Models.Book;
+import Models.Container;
+import UI.UserInterface;
 
 /**
  *
@@ -20,18 +21,22 @@ public class OhtuBibTex {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //test
-        Container cont = new Container();
-        cont.addReference(new Book(1234,"Jaakko","Jaakon höpötykset","ACM"));
-        cont.addReference(new Book(2001,"Martti Laaksonen","Taide","DELTA"));
-        List<Reference> list = cont.listReferences();
-        for (Reference ref : list) {
-            System.out.println(ref.toBibTex());
-        }
-        System.out.println("////////////////////////////////////////////////");
-        //real code
+        UserInterface userInterface = new UserInterface();
         
-        //TODO komentoriviUI
+        Container container = userInterface.getContainer();
         
+        // Adding some book references.
+        Book book1 = new Book(1997, "Jennifer Lowett", "I Burn For You", "Harlequin");
+        Book book2 = new Book(1889, "Don Rosa", "Life and Times of Scrooge McDuck", "Nothington");
+        Book book3 = new Book(2000, "Steve Hackwell", "Fount east of Altaria", "Baen");
+        container.addReference(new Book(1896,"Jaakko","Jaakon selitykset","ACM"));
+        container.addReference(new Book(2001,"Martti Laaksonen","Taide","DELTA"));
+        
+        container.addReference(book1);
+        container.addReference(book2);
+        container.addReference(book3);
+        
+//        userInterface.getContainer().listReferences();
+        userInterface.start();    
     }
 }

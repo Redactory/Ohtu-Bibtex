@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 
-import reference.Reference;
-import reference.Container;
+import Models.Reference;
+import Models.Container;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -73,8 +73,6 @@ public class ContainerTest {
         System.out.println("listReferences");
         Container instance = new Container();
         List<Reference> expResult = null;
-        List<Reference> result = instance.listReferences();
-        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
