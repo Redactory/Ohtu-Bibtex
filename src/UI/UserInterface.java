@@ -66,7 +66,7 @@ public class UserInterface {
                 book.setYear(Integer.parseInt(year));
                 break;
             }
-            System.out.println("Invalid input");
+            System.out.println("\nInvalid input\n");
         }
 
         // Add author
@@ -78,10 +78,11 @@ public class UserInterface {
                 book.setAuthor(author);
                 break;
             }
-            System.out.println("Invalid input");
+            System.out.println("\nInvalid input\n");
 
         }
         // Add title
+        regex = "([a-zA-Z0-9]+[\\s]*)+";
         while (true) {
             System.out.println("Give book title:\n");
             String title = this.scanner.nextLine();
@@ -89,7 +90,7 @@ public class UserInterface {
                 book.setTitle(title);
                 break;
             }
-            System.out.println("Invalid input");
+            System.out.println("\nInvalid input\n");
         }
         // Add publisher
         while (true) {
@@ -99,7 +100,7 @@ public class UserInterface {
                 book.setPublisher(publisher);
                 break;
             }
-            System.out.println("Invalid input");
+            System.out.println("\nInvalid input\n");
         }
         container.addReference(book);
 
