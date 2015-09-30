@@ -63,7 +63,7 @@ public class Book extends Reference {
      * @return the book in BibTex format
      */
     public String toBibTex() {        
-        return "@book{GA03,\n"
+        return "@book{"+ getId ()+",\n"
                 + "  author = {" + this.author + "}, \n"
                 + "  title = {" + this.title + "}, \n"
                 + "  publisher = {" + this.publisher + "}, \n"
