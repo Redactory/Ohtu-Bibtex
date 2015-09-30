@@ -21,9 +21,13 @@ public class UserInterface {
     // Scanner object for reading input.
     Scanner scanner;
 
+    // Object for managing attribute addition to references.
+    AttributeAdditionMethods attributes;
+    
     public UserInterface() {
         container = new Container();
         scanner = new Scanner(System.in);
+        attributes = new AttributeAdditionMethods();
     }
 
     public Container getContainer() {
@@ -53,55 +57,27 @@ public class UserInterface {
     // Method for adding book reference.
     public void addBookReference() {
         Book book = new Book();
-        String regex;
+
         System.out.println("Input mandatory fields for book referece \n");
 //        System.out.println("If you want to stop book creation, write 'halt' \n\n");
 
         // Add year to the book.
-        regex = "[0-9]+";
-        while (true) {
-            System.out.println("Give the year in which the book was published: \n");
-            String year = this.scanner.nextLine();
-            if (year.matches(regex)) {
-                book.setYear(Integer.parseInt(year));
-                break;
-            }
-            System.out.println("\nInvalid input\n");
-        }
+        String year = attributes.addYear();
+        book.setYear(Integer.parseInt(year));
 
         // Add author
-        regex = "([a-zA-Z]+[\\s]*)+";
-        while (true) {
-            System.out.println("Give book author:\n");
-            String author = this.scanner.nextLine();
-            if (author.matches(regex)) {
-                book.setAuthor(author);
-                break;
-            }
-            System.out.println("\nInvalid input\n");
-
-        }
+        String author = attributes.addAuthor();
+        book.setAuthor(author);
+       
         // Add title
-        regex = "([a-zA-Z0-9]+[\\s]*)+";
-        while (true) {
-            System.out.println("Give book title:\n");
-            String title = this.scanner.nextLine();
-            if (title.matches(regex)) {
-                book.setTitle(title);
-                break;
-            }
-            System.out.println("\nInvalid input\n");
-        }
+        String title = attributes.addTitle();
+        book.setTitle(title);
+                
         // Add publisher
-        while (true) {
-            System.out.println("Give book publisher:\n");
-            String publisher = this.scanner.nextLine();
-            if (publisher.matches(regex)) {
-                book.setPublisher(publisher);
-                break;
-            }
-            System.out.println("\nInvalid input\n");
-        }
+        String publisher = attributes.addPublisher();
+        book.setPublisher(publisher);
+        
+        // Attribute definition ends, book is created.
         container.addReference(book);
 
         System.out.println("new book reference has been created!");

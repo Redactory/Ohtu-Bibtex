@@ -62,10 +62,14 @@ public class BookTest {
        assertTrue("String is not in BibTex format", testVal);
     }
 
-    @Test
-    public void testToBibTexFieldsHaveCorrectValues() {
-        fail("The test case is a prototype.");
-    }
+    /* Tämä koodipatkä auto-feilaa, se kantsii olla poiskommentoitu
+       sen aikaa kun siinä ei ole implementaatiota.
+    */
+    
+//    @Test
+//    public void testToBibTexFieldsHaveCorrectValues() {
+//        fail("The test case is a prototype.");
+//    }
 
     /**
      * Checks if the given string matches the given pattern. 
