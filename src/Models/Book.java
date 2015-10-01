@@ -5,37 +5,48 @@ package Models;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author teemu
  */
 public class Book extends Reference {
-    
+
     private String id;
+
     //  REQUIRED FIELDS
     private Integer year;
     private String author;//or editor
     private String title;
     private String publisher;
+    private String editor;
+
     //  OPTIONAL FIELDS
-    //volume or number
-    //series
-    //address
-    //edition
-    //month
-    //note
-    
+    private String volume;
+    private String number;
+    private String series;
+    private String address;
+    private String edition;
+    private String month;
+    private String note;
+
     public Book() {
         id = super.id;
         this.year = Integer.MIN_VALUE;
-        this.author = "No Author";
-        this.title = "Book of Empty";
-        this.publisher = "Emptiness";
+        this.author = "";
+        this.title = "";
+        this.publisher = "";
+        this.editor = "";
+        this.volume = "";
+        this.number = "";
+        this.series = "";
+        this.address = "";
+        this.edition = "";
+        this.month = "";
+        this.note = "";
     }
-    
+
     public Book(int year, String author, String title,
-                String publisher) {
+            String publisher) {
         this.year = year;
         this.author = author;
         this.title = title;
@@ -57,12 +68,76 @@ public class Book extends Reference {
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
-    
+
+    public String getEditor() {
+        return editor;
+    }
+
+    public void setEditor(String editor) {
+        this.editor = editor;
+    }
+
+    public String getVolume() {
+        return volume;
+    }
+
+    public void setVolume(String volume) {
+        this.volume = volume;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getSeries() {
+        return series;
+    }
+
+    public void setSeries(String series) {
+        this.series = series;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEdition() {
+        return edition;
+    }
+
+    public void setEdition(String edition) {
+        this.edition = edition;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
     /**
-     * 
+     *
      * @return the book in BibTex format
      */
-    public String toBibTex() {        
+    public String toBibTex() {
         return "@book{GA03,\n"
                 + "  author = {" + this.author + "}, \n"
                 + "  title = {" + this.title + "}, \n"
@@ -70,9 +145,9 @@ public class Book extends Reference {
                 + "  year = {" + this.year + "}, \n"
                 + "} \n";
     }
-    
+
     @Override
-    public void print() {       
+    public void print() {
         System.out.println(toBibTex());
     }
 }
