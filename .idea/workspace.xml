@@ -14,11 +14,11 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Ohtu-Bibtex$BookTest.coverage" NAME="BookTest Coverage Results" MODIFIED="1443724956856" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Ohtu-Bibtex$UserInterfaceTest.coverage" NAME="UserInterfaceTest Coverage Results" MODIFIED="1443692099412" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>UI.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Ohtu-Bibtex$BookTest.coverage" NAME="BookTest Coverage Results" MODIFIED="1443724459209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/Ohtu-Bibtex$ReferenceTest.coverage" NAME="ReferenceTest Coverage Results" MODIFIED="1443724795123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Ohtu-Bibtex$ReferenceTest.coverage" NAME="ReferenceTest Coverage Results" MODIFIED="1443724858796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Models.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Ohtu-Bibtex$ContainerTest.coverage" NAME="ContainerTest Coverage Results" MODIFIED="1443724690126" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -40,48 +40,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BookTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BookTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/Models/BookTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="638" max-vertical-offset="1395">
-              <caret line="55" column="55" selection-start-line="55" selection-start-column="55" selection-end-line="55" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.93668526" vertical-offset="1333" max-vertical-offset="1938">
+              <caret line="108" column="1" selection-start-line="108" selection-start-column="1" selection-end-line="108" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReferenceTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/Models/ReferenceTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47159842" vertical-offset="523" max-vertical-offset="1280">
-              <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Container.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Models/Container.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="233" max-vertical-offset="1056">
-              <caret line="49" column="1" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1049#1060#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ContainerTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/Models/ContainerTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="503" max-vertical-offset="1260">
-              <caret line="88" column="1" selection-start-line="88" selection-start-column="1" selection-end-line="88" selection-end-column="1" />
-              <folding>
-                <element signature="e#2060#2071#0" expanded="true" />
+                <element signature="e#864#865#0" expanded="true" />
+                <element signature="e#890#891#0" expanded="true" />
+                <element signature="e#2026#2027#0" expanded="true" />
+                <element signature="e#2079#2080#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -98,10 +67,10 @@
         <option value="$PROJECT_DIR$/src/test/java/ReferenceTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/UI/UserInterfaceTest.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/test/java/Models/BookTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/Models/ContainerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/Models/Container.java" />
         <option value="$PROJECT_DIR$/src/test/java/Models/ReferenceTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Models/BookTest.java" />
       </list>
     </option>
   </component>
@@ -323,7 +292,7 @@
       <recent name="Models" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReferenceTest">
+  <component name="RunManager" selected="JUnit.BookTest">
     <configuration default="false" name="OhtuBibTex" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -710,9 +679,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.ReferenceTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.ContainerTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.BookTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.BookTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.ReferenceTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.ContainerTest" />
         <item index="3" class="java.lang.String" itemvalue="Application.OhtuBibTex" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.UserInterfaceTest" />
       </list>
@@ -767,7 +736,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24031563" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28025478" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28025478" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -806,6 +775,10 @@
           <caret line="55" column="55" selection-start-line="55" selection-start-column="55" selection-end-line="55" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#864#865#0" expanded="true" />
+            <element signature="e#890#891#0" expanded="true" />
+            <element signature="e#2026#2027#0" expanded="true" />
+            <element signature="e#2079#2080#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -839,19 +812,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/Models/ContainerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/Models/ReferenceTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="503" max-vertical-offset="1260">
-          <caret line="88" column="1" selection-start-line="88" selection-start-column="1" selection-end-line="88" selection-end-column="1" />
-          <folding>
-            <element signature="e#2060#2071#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.65745854" vertical-offset="523" max-vertical-offset="1280">
+          <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Models/Container.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="233" max-vertical-offset="1056">
+        <state vertical-scroll-proportion="1.2320442" vertical-offset="233" max-vertical-offset="1056">
           <caret line="49" column="1" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -860,21 +831,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/Models/BookTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/Models/ContainerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="768" max-vertical-offset="1425">
-          <caret line="55" column="55" selection-start-line="55" selection-start-column="55" selection-end-line="55" selection-end-column="55" />
+        <state vertical-scroll-proportion="1.228361" vertical-offset="503" max-vertical-offset="1260">
+          <caret line="88" column="1" selection-start-line="88" selection-start-column="1" selection-end-line="88" selection-end-column="1" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2060#2071#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/Models/ReferenceTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/Models/BookTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47159842" vertical-offset="523" max-vertical-offset="1280">
-          <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
-          <folding />
+        <state vertical-scroll-proportion="0.93668526" vertical-offset="1333" max-vertical-offset="1938">
+          <caret line="108" column="1" selection-start-line="108" selection-start-column="1" selection-end-line="108" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#864#865#0" expanded="true" />
+            <element signature="e#890#891#0" expanded="true" />
+            <element signature="e#2026#2027#0" expanded="true" />
+            <element signature="e#2079#2080#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
