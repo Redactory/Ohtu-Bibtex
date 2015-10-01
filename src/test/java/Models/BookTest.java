@@ -34,7 +34,7 @@ public class BookTest {
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -49,7 +49,7 @@ public class BookTest {
         String s = instance.toBibTex();
         //test correct format without taking fields into account
     }
-    
+
     @Test
     public void testToBibTexHasCorrectFormat() {
         System.out.println("toBibTex");
@@ -68,7 +68,7 @@ public class BookTest {
     }
 
     /**
-     * Checks if the given string matches the given pattern. 
+     * Checks if the given string matches the given pattern.
      * Returns true if the string matches exactly or false if it does not match.
      *
      * @param s

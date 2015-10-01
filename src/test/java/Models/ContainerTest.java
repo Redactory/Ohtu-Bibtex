@@ -6,6 +6,8 @@ package Models;/*
 
 import Models.Reference;
 import Models.Container;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,22 +21,22 @@ import static org.junit.Assert.*;
  * @author teemu
  */
 public class ContainerTest {
-    
+
     public ContainerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -45,11 +47,12 @@ public class ContainerTest {
     @Test
     public void testAddReference() {
         System.out.println("addReference");
-        Reference r = null;
+        Reference r = new Reference();
         Container instance = new Container();
         instance.addReference(r);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
+        assertEquals(r, instance.getReferences().get(r.getId()));
     }
 
     /**
@@ -58,11 +61,12 @@ public class ContainerTest {
     @Test
     public void testDeleteReference() {
         System.out.println("deleteReference");
-        Reference r = null;
+        Reference r = new Reference();
         Container instance = new Container();
+        instance.addReference(r);
         instance.deleteReference(r);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(null, instance.getReferences().get(r.getId()));
     }
 
     /**
@@ -72,9 +76,14 @@ public class ContainerTest {
     public void testListReferences() {
         System.out.println("listReferences");
         Container instance = new Container();
-        List<Reference> expResult = null;
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Reference r = new Reference();
+        List<Reference> expResult = new ArrayList<Reference>();
+        instance.addReference(r);
+        expResult.add(r);
+
+        assertEquals(expResult, instance.listReferences());
+
+
     }
-    
+
 }

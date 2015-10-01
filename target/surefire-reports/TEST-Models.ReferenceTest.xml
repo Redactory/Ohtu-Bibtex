@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="1" name="Models.ReferenceTest" time="0.001" errors="0" skipped="0">
+<testsuite tests="1" failures="1" name="Models.ReferenceTest" time="0" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib"/>
@@ -62,8 +62,8 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="Models.ReferenceTest" name="testGetId" time="0.001">
-    <failure message="expected:&lt;[]&gt; but was:&lt;[7d0f49bd-1f94-4e72-884d-6f59a4136544]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;[]&gt; but was:&lt;[7d0f49bd-1f94-4e72-884d-6f59a4136544]&gt;
+  <testcase classname="Models.ReferenceTest" name="testGetId" time="0">
+    <failure message="expected:&lt;[]&gt; but was:&lt;[5fb09d3e-e428-4c84-8e11-ac351c79daa6]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;[]&gt; but was:&lt;[5fb09d3e-e428-4c84-8e11-ac351c79daa6]&gt;
 	at org.junit.Assert.assertEquals(Assert.java:125)
 	at org.junit.Assert.assertEquals(Assert.java:147)
 	at Models.ReferenceTest.testGetId(ReferenceTest.java:49)
