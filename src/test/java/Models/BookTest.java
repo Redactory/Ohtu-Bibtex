@@ -1,4 +1,4 @@
-/*
+package Models;/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -34,7 +34,7 @@ public class BookTest {
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -43,13 +43,33 @@ public class BookTest {
      * Test of toBibTex method, of class Book.
      */
     @Test
+    public void testEmptyConstructor(){
+        new Book();
+    }
+
+    @Test
+    public void testAddFieldsLater(){
+        Book b = new Book();
+        b.setAuthor("Rali");
+        b.setPublisher("Ralin kustantamo");
+        b.setTitle("Lisaa minusta");
+        b.setYear(1010);
+    }
+
+    @Test
+    public void testPrint(){
+        Book b = new Book();
+        b.print();
+    }
+
+    @Test
     public void testToBibTex() {
         System.out.println("toBibTex");
         Book instance = new Book(2011, "Jaakko Murmi", "", "ACM");
         String s = instance.toBibTex();
         //test correct format without taking fields into account
     }
-    
+
     @Test
     public void testToBibTexHasCorrectFormat() {
         System.out.println("toBibTex");
@@ -57,9 +77,9 @@ public class BookTest {
         String s = instance.toBibTex();
         //GA03 is temporarily id for all books
         //regex matching
-       boolean testVal = matchRegex(s, "@book[{]GA03,([\\s]*[a-zA-Z]+[\\s]*=" +
-               "[\\s]*[{][^}]+[}],)+[\\s]*[}][\\s]*");
-       assertTrue("String is not in BibTex format", testVal);
+        boolean testVal = matchRegex(s, "@book[{]GA03,([\\s]*[a-zA-Z]+[\\s]*=" +
+                "[\\s]*[{][^}]+[}],)+[\\s]*[}][\\s]*");
+        assertTrue("String is not in BibTex format", testVal);
     }
 
     /* Tämä koodipatkä auto-feilaa, se kantsii olla poiskommentoitu

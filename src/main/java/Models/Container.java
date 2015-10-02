@@ -1,6 +1,7 @@
 package Models;
 
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -38,10 +39,12 @@ public class Container {
     }
     
     // Method for listing references in database.
-    public void listReferences() {
+    public List<Reference> listReferences() {
+        List<Reference> l = new ArrayList<Reference>();
         for (String k : references.keySet()) {
             Reference r = references.get(k);
-            r.print();
+            l.add(r);
         }
+        return l;
     }
 }
