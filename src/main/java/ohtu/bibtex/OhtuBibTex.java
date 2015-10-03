@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ohtu.bibtex;
+package main.java.ohtu.bibtex;
 
 
-import java.util.List;
-import Models.Book;
-import Models.Container;
-import UI.UserInterface;
+import main.java.Models.Book;
+import main.java.Models.Container;
+import main.java.UI.UserInterface;
 
 /**
  *

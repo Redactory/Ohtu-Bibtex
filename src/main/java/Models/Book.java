@@ -1,4 +1,8 @@
-package Models;
+package main.java.Models;
+
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
+import main.java.Models.Generator;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,6 +16,7 @@ package Models;
 public class Book extends Reference {
 
     private String id;
+    private Integer reference_id;
 
     //  REQUIRED FIELDS
     private Integer year;
@@ -30,7 +35,8 @@ public class Book extends Reference {
     private String note;
 
     public Book() {
-        id = super.id;
+        this.reference_id = Generator.generateReferenceId();
+        this.id = UUID.randomUUID().toString();
         this.year = Integer.MIN_VALUE;
         this.author = "";
         this.title = "";
@@ -47,6 +53,7 @@ public class Book extends Reference {
 
     public Book(int year, String author, String title,
             String publisher) {
+        this.reference_id = Generator.generateReferenceId();
         this.year = year;
         this.author = author;
         this.title = title;
@@ -133,12 +140,17 @@ public class Book extends Reference {
         this.note = note;
     }
 
+    @Override
+    public Integer getReference_id() {
+        return this.reference_id;
+    }
+
     /**
      *
      * @return the book in BibTex format
      */
     public String toBibTex() {
-        return "@book{GA03,\n"
+        return "  " + getReference_id() + ", \n"
                 + "  author = {" + this.author + "}, \n"
                 + "  title = {" + this.title + "}, \n"
                 + "  publisher = {" + this.publisher + "}, \n"

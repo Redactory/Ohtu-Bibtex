@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI;
+package main.java.UI;
 
-import Models.Book;
-import Models.Container;
+import UI.AttributeAdditionMethods;
 import java.util.Scanner;
+import main.java.Models.Article;
+import main.java.Models.Book;
+import main.java.Models.Container;
+import main.java.Models.Inproceeding;
 
 /**
  *
@@ -39,12 +42,18 @@ public class UserInterface {
         System.out.println("You can perform following actions. "
                 + "Press the key in the wave-bracket:");
         System.out.println("- Add a book reference (B) \n");
+        System.out.println("- Add an article reference (A) \n");
+        System.out.println("- Add an inproceeding reference (I) \n");
         System.out.println("- List existing references (L) \n");
 
         String answer = this.scanner.nextLine();
 
         if (answer.equals("B")) {
             addBookReference();
+        } else if (answer.equals("A")) {
+            addArticleReference();
+        } else if (answer.equals("I")) {
+            addInproceedingReference();
         } else if (answer.equals("L")) {
             this.container.listReferences();
             start();
@@ -60,7 +69,7 @@ public class UserInterface {
         String choice = "";
         Book book = new Book();
 
-        System.out.println("Input mandatory fields for book referece \n");
+        System.out.println("Input mandatory fields for book reference \n");
 //        System.out.println("If you want to stop book creation, write 'halt' \n\n");
 
         // Add year to the book.
@@ -89,9 +98,9 @@ public class UserInterface {
         ok = false;
         choice = "";
 
-        String author = attributes.addAuthor();
-        book.setAuthor(author);
-
+        // Add author
+//        String author = attributes.addAuthor();
+//        book.setAuthor(author);
         // Add title
         String title = attributes.addTitle();
         book.setTitle(title);
@@ -176,7 +185,7 @@ public class UserInterface {
                 System.out.println("Invalid choice, try again! \n");
             }
         }
-        
+
         ok = false;
         choice = "";
 
@@ -263,14 +272,392 @@ public class UserInterface {
 
         return book;
     }
-    
+
     // Method for adding article-references.
-    public void addArticleReference() {
-        
+    private void addArticleReference() {
+        boolean ok = false;
+        String choice = "";
+        Article article = new Article();
+
+        System.out.println("Input mandatory fields for article reference: \n");
+
+        // Add author
+        String author = attributes.addAuthor();
+        article.setAuthor(author);
+
+        // Add title
+        String title = attributes.addTitle();
+        article.setTitle(title);
+
+        // add journal
+        String journal = attributes.addJournal();
+        article.setJournal(journal);
+
+        // add year
+        String year = attributes.addYear();
+        article.setYear(Integer.parseInt(year));
+
+        // Choice for either adding optional fields or not.
+        while (ok == false) {
+            System.out.println("Do you want to add optional fields too? Press 'Y' for yes"
+                    + " or 'N' for no. \n");
+            choice = scanner.nextLine();
+
+            if (choice.equals("Y")) {
+                article = addOptionalArticleReferences(article);
+                ok = true;
+            } else if (choice.equals("N")) {
+                ok = true;
+            } else {
+                System.out.println("Invalid choice, try again! \n");
+            }
+
+        }
+
+        // Attribute definition ends, article is created.
+        container.addReference(article);
+
+        System.out.println("A new article reference has been created!");
+        System.out.println("There are now " + this.container.getReferences().size()
+                + " references in the system.");
+
+        start();
     }
-    
+
+    // Method for adding optional article attributes.
+    private Article addOptionalArticleReferences(Article article) {
+        boolean ok = false;
+        String choice = "";
+
+        System.out.println("Input optional fields for article reference: \n");
+
+        // Add volume
+        while (ok == false) {
+            System.out.println("Do you want to add attribute for volume? \n");
+            System.out.println("Select (V) for yes and (S) to skip. \n");
+            choice = scanner.nextLine();
+
+            if (choice.equals("V")) {
+                String volume = attributes.addVolume();
+                article.setVolume(volume);
+                ok = true;
+            } else if (choice.equals("S")) {
+                ok = true;
+            } else {
+                System.out.println("Invalid choice!\n");
+            }
+        }
+
+        ok = false;
+        choice = "";
+
+        // Add number
+        while (ok == false) {
+            System.out.println("Do you want to add attribute for number? \n");
+            System.out.println("Select (N) for yes and (S) to skip. \n");
+            choice = scanner.nextLine();
+
+            if (choice.equals("N")) {
+                String number = attributes.addNumber();
+                article.setNumber(Integer.parseInt(number));
+                ok = true;
+            } else if (choice.equals("S")) {
+                ok = true;
+            } else {
+                System.out.println("Invalid choice!\n");
+            }
+        }
+
+        ok = false;
+        choice = "";
+
+        // Add pages
+        while (ok == false) {
+            System.out.println("Do you want to add attribute for pages? \n");
+            System.out.println("Select (P) for yes and (S) to skip. \n");
+            choice = scanner.nextLine();
+
+            if (choice.equals("P")) {
+                String pages = attributes.addPages();
+                article.setPages(pages);
+                ok = true;
+            } else if (choice.equals("S")) {
+                ok = true;
+            } else {
+                System.out.println("Invalid choice!\n");
+            }
+        }
+
+        ok = false;
+        choice = "";
+
+        // Add month
+        while (ok == false) {
+            System.out.println("Do you want to add attribute for month? \n");
+            System.out.println("Select (M) for yes and (S) to skip. \n");
+            choice = scanner.nextLine();
+
+            if (choice.equals("M")) {
+                String month = attributes.addMonth();
+                article.setMonth(month);
+                ok = true;
+            } else if (choice.equals("S")) {
+                ok = true;
+            } else {
+                System.out.println("Invalid choice!\n");
+            }
+        }
+
+        ok = false;
+        choice = "";
+
+        // Add note
+        while (ok == false) {
+            System.out.println("Do you want to add attribute for note? \n");
+            System.out.println("Select (N) for yes and (S) to skip. \n");
+            choice = scanner.nextLine();
+
+            if (choice.equals("N")) {
+                String note = attributes.addNote();
+                article.setNote(note);
+                ok = true;
+            } else if (choice.equals("S")) {
+                ok = true;
+            } else {
+                System.out.println("Invalid choice!\n");
+            }
+        }
+
+        return article;
+    }
+
     // Method for adding inproceeding-references
-    public void addInproceedingReference() {
-        
+    private void addInproceedingReference() {
+        boolean ok = false;
+        String choice = "";
+        Inproceeding inproceeding = new Inproceeding();
+
+        System.out.println("Input mandatory fields for inproceeding reference: \n");
+
+        // Add author
+        String author = attributes.addAuthor();
+        inproceeding.setAuthor(author);
+
+        // Add title
+        String title = attributes.addTitle();
+        inproceeding.setTitle(title);
+
+        // add booktitle
+        String booktitle = attributes.addTitle();
+        inproceeding.setBooktitle(booktitle);
+
+        // add year
+        String year = attributes.addYear();
+        inproceeding.setYear(Integer.parseInt(year));
+
+        // Choice for either adding optional fields or not.
+        while (ok == false) {
+            System.out.println("Do you want to add optional fields too? Press 'Y' for yes"
+                    + " or 'N' for no. \n");
+            choice = scanner.nextLine();
+
+            if (choice.equals("Y")) {
+                inproceeding = addOptionalInproceedingReferences(inproceeding);
+                ok = true;
+            } else if (choice.equals("N")) {
+                ok = true;
+            } else {
+                System.out.println("Invalid choice, try again! \n");
+            }
+
+        }
+
+        // Attribute definition ends, article is created.
+        container.addReference(inproceeding);
+
+        System.out.println("A new inproceeding reference has been created!");
+        System.out.println("There are now " + this.container.getReferences().size()
+                + " references in the system.");
+
+        start();
+    }
+
+    private Inproceeding addOptionalInproceedingReferences(Inproceeding inproceeding) {
+        boolean ok = false;
+        String choice = "";
+
+        while (ok == false) {
+            System.out.println("Do you want to add attribute for editor? \n");
+            System.out.println("Select (E) for yes and (S) to skip. \n");
+            choice = scanner.nextLine();
+
+            if (choice.equals("E")) {
+                String editor = attributes.addEditor();
+                inproceeding.setMonth(editor);
+                ok = true;
+            } else if (choice.equals("S")) {
+                ok = true;
+            } else {
+                System.out.println("Invalid choice!\n");
+            }
+        }
+
+        ok = false;
+        choice = "";
+
+        while (ok == false) {
+            System.out.println("Do you want to add attribute for volume or number or maybe skip? \n");
+            System.out.println("Select (V) for volume, (N) for number or (S) to skip. \n");
+            choice = scanner.nextLine();
+
+            if (choice.equals("V")) {
+                String volume = attributes.addVolume();
+                inproceeding.setVolume(volume);
+                ok = true;
+            } else if (choice.equals("N")) {
+                String number = attributes.addNumber();
+                inproceeding.setNumber(Integer.parseInt(number));
+                ok = true;
+            } else if (choice.equals("S")) {
+                ok = true;
+            } else {
+                System.out.println("Invalid choice!\n");
+            }
+        }
+
+        ok = false;
+        choice = "";
+
+        while (ok == false) {
+            System.out.println("Do you want to add attribute for series? \n");
+            System.out.println("Select (R) for yes and (S) to skip. \n");
+            choice = scanner.nextLine();
+
+            if (choice.equals("R")) {
+                String series = attributes.addSeries();
+                inproceeding.setSeries(series);
+                ok = true;
+            } else if (choice.equals("S")) {
+                ok = true;
+            } else {
+                System.out.println("Invalid choice!\n");
+            }
+        }
+
+        ok = false;
+        choice = "";
+
+        while (ok == false) {
+            System.out.println("Do you want to add attribute for pages? \n");
+            System.out.println("Select (P) for yes and (S) to skip. \n");
+            choice = scanner.nextLine();
+
+            if (choice.equals("P")) {
+                String pages = attributes.addPages();
+                inproceeding.setMonth(pages);
+                ok = true;
+            } else if (choice.equals("S")) {
+                ok = true;
+            } else {
+                System.out.println("Invalid choice!\n");
+            }
+        }
+
+        ok = false;
+        choice = "";
+
+        while (ok == false) {
+            System.out.println("Do you want to add attribute for address? \n");
+            System.out.println("Select (A) for yes and (S) to skip. \n");
+            choice = scanner.nextLine();
+
+            if (choice.equals("A")) {
+                String address = attributes.addAddress();
+                inproceeding.setMonth(address);
+                ok = true;
+            } else if (choice.equals("S")) {
+                ok = true;
+            } else {
+                System.out.println("Invalid choice!\n");
+            }
+        }
+
+        ok = false;
+        choice = "";
+
+        while (ok == false) {
+            System.out.println("Do you want to add attribute for month? \n");
+            System.out.println("Select (M) for yes and (S) to skip. \n");
+            choice = scanner.nextLine();
+
+            if (choice.equals("M")) {
+                String month = attributes.addMonth();
+                inproceeding.setMonth(month);
+                ok = true;
+            } else if (choice.equals("S")) {
+                ok = true;
+            } else {
+                System.out.println("Invalid choice!\n");
+            }
+        }
+
+        ok = false;
+        choice = "";
+
+        while (ok == false) {
+            System.out.println("Do you want to add attribute for organization? \n");
+            System.out.println("Select (O) for yes and (S) to skip. \n");
+            choice = scanner.nextLine();
+
+            if (choice.equals("O")) {
+                String organization = attributes.addOrganization();
+                inproceeding.setMonth(organization);
+                ok = true;
+            } else if (choice.equals("S")) {
+                ok = true;
+            } else {
+                System.out.println("Invalid choice!\n");
+            }
+        }
+
+        ok = false;
+        choice = "";
+
+        while (ok == false) {
+            System.out.println("Do you want to add attribute for month? \n");
+            System.out.println("Select (P) for yes and (S) to skip. \n");
+            choice = scanner.nextLine();
+
+            if (choice.equals("P")) {
+                String publisher = attributes.addPublisher();
+                inproceeding.setMonth(publisher);
+                ok = true;
+            } else if (choice.equals("S")) {
+                ok = true;
+            } else {
+                System.out.println("Invalid choice!\n");
+            }
+        }
+
+        ok = false;
+        choice = "";
+
+        while (ok == false) {
+            System.out.println("Do you want to add attribute for note? \n");
+            System.out.println("Select (N) for yes and (S) to skip. \n");
+            choice = scanner.nextLine();
+
+            if (choice.equals("N")) {
+                String note = attributes.addNote();
+                inproceeding.setMonth(note);
+                ok = true;
+            } else if (choice.equals("S")) {
+                ok = true;
+            } else {
+                System.out.println("Invalid choice!\n");
+            }
+        }
+
+        return inproceeding;
     }
 }

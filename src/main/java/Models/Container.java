@@ -1,4 +1,4 @@
-package Models;
+package main.java.Models;
 
 
 import java.util.ArrayList;
@@ -43,6 +43,7 @@ public class Container {
         List<Reference> l = new ArrayList<Reference>();
         for (String k : references.keySet()) {
             Reference r = references.get(k);
+            r.print();
             l.add(r);
         }
         return l;
