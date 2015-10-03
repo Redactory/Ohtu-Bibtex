@@ -23,11 +23,11 @@ public final class ReferenceConverter {
      * @return 
      */
     public static String toBibTex(Reference ref) {
-        if (ref.getClass().isInstance(Book.class)) {
+        if (ref.getClass().isAssignableFrom(Book.class)) {
             return bookToBibTex((Book) ref);
-        } else if (ref.getClass().isInstance(Article.class)) {
+        } else if (ref.getClass().isAssignableFrom(Article.class)) {
             return articleToBibTex((Article) ref);
-        } else if (ref.getClass().isInstance(Inproceeding.class)) {
+        } else if (ref.getClass().isAssignableFrom(Inproceeding.class)) {
             return inproceedingToBibTex((Inproceeding) ref);
         }
         return null;

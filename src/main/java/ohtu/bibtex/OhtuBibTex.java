@@ -6,10 +6,10 @@
 package ohtu.bibtex;
 
 
-import java.util.List;
 import Models.Book;
 import Models.Container;
 import UI.UserInterface;
+import main.java.Models.IO.IO;
 
 /**
  *
@@ -24,7 +24,7 @@ public class OhtuBibTex {
         UserInterface userInterface = new UserInterface();
         
         Container container = userInterface.getContainer();
-        
+
         // Adding some book references.
         Book book1 = new Book(1997, "Jennifer Lowett", "I Burn For You", "Harlequin");
         Book book2 = new Book(1889, "Don Rosa", "Life and Times of Scrooge McDuck", "Nothington");
@@ -36,7 +36,6 @@ public class OhtuBibTex {
         container.addReference(book1);
         container.addReference(book2);
         container.addReference(book3);
-        
 //        userInterface.getContainer().listReferences();
         userInterface.start();    
     }

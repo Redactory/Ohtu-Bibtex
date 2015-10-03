@@ -8,7 +8,9 @@ package UI;
 import Models.Book;
 import Models.Container;
 import Models.Reference;
+import java.io.File;
 import java.util.Scanner;
+import main.java.Models.IO.IO;
 
 /**
  *
@@ -41,6 +43,7 @@ public class UserInterface {
                 + "Press the key in the wave-bracket:");
         System.out.println("- Add a book reference (B) \n");
         System.out.println("- List existing references (L) \n");
+        System.out.println("- Export existing references to file (export) \n");
 
         String answer = this.scanner.nextLine();
 
@@ -50,6 +53,12 @@ public class UserInterface {
             for (Reference ref : this.container.listReferences()) {
                 ref.print();
             }        
+            start();
+        } else if (answer.equals("export")) {
+            System.out.println("Enter filename:");
+            answer="";
+            answer = scanner.nextLine();
+            IO.exportToBibTex(new File(answer), container.listReferences());
             start();
         } else {
             System.out.println("Program ends!");
