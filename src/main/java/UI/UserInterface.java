@@ -5,12 +5,15 @@
  */
 package main.java.UI;
 
-import UI.AttributeAdditionMethods;
-import java.util.Scanner;
 import main.java.Models.Article;
 import main.java.Models.Book;
 import main.java.Models.Container;
 import main.java.Models.Inproceeding;
+import main.java.Models.Reference;
+import java.io.File;
+import java.util.Scanner;
+import main.java.IO.IO;
+import main.java.Models.ReferenceConverter;
 
 /**
  *
@@ -45,6 +48,7 @@ public class UserInterface {
         System.out.println("- Add an article reference (A) \n");
         System.out.println("- Add an inproceeding reference (I) \n");
         System.out.println("- List existing references (L) \n");
+        System.out.println("- Export existing references to file (export) \n");
 
         String answer = this.scanner.nextLine();
 
@@ -55,7 +59,15 @@ public class UserInterface {
         } else if (answer.equals("I")) {
             addInproceedingReference();
         } else if (answer.equals("L")) {
-            this.container.listReferences();
+            for (Reference ref : this.container.listReferences()) {
+                System.out.println(ReferenceConverter.toBibTex(ref));
+            }
+            start();
+        } else if (answer.equals("export")) {
+            System.out.println("Enter filename:");
+            answer = "";
+            answer = scanner.nextLine();
+            IO.exportToBibTex(new File(answer), container.listReferences());
             start();
         } else {
             System.out.println("Program ends!");
@@ -70,8 +82,8 @@ public class UserInterface {
         Book book = new Book();
 
         System.out.println("Input mandatory fields for book reference \n");
-//        System.out.println("If you want to stop book creation, write 'halt' \n\n");
 
+//        System.out.println("If you want to stop book creation, write 'halt' \n\n");
         // Add year to the book.
         String year = attributes.addYear();
         book.setYear(Integer.parseInt(year));
@@ -81,7 +93,6 @@ public class UserInterface {
             System.out.println("If you wish to add an author, press 'A'. \n");
             System.out.println("If you wish to add an editor, press 'E'. \n");
             choice = scanner.nextLine();
-
             if (choice.equals("A")) {
                 String author = attributes.addAuthor();
                 book.setAuthor(author);
@@ -94,13 +105,9 @@ public class UserInterface {
                 System.out.println("Invalid choice, try again! \n");
             }
         }
-
         ok = false;
         choice = "";
 
-        // Add author
-//        String author = attributes.addAuthor();
-//        book.setAuthor(author);
         // Add title
         String title = attributes.addTitle();
         book.setTitle(title);
@@ -142,8 +149,9 @@ public class UserInterface {
 
         // Adding either volume or number to the reference.
         while (ok == false) {
-            System.out.println("Do you want to add either Volume or Number attribute? Press 'Y' for yes"
-                    + " or 'N' for no. \n");
+//what is this?
+//            System.out.println("Do you want to add either Volume or Number attribute? Press 'Y' for yes"
+//                    + " or 'N' for no. \n");
             System.out.println("Press 'V' for volume or \n");
             System.out.println("Press 'N' for number or \n");
             System.out.println("Press 'S' to not choose either. \n");
@@ -162,12 +170,12 @@ public class UserInterface {
             } else {
                 System.out.println("Invalid choice, try again! \n");
             }
-
         }
 
         ok = false;
         choice = "";
 
+        //SERIES
         while (ok == false) {
             System.out.println("Do you want to add Series attribute? \n");
             System.out.println("Press 'V' for series or \n");
@@ -175,7 +183,7 @@ public class UserInterface {
 
             choice = scanner.nextLine();
 
-            if (choice.equals("S")) {
+            if (choice.equals("V")) {
                 String series = attributes.addSeries();
                 book.setSeries(series);
                 ok = true;
@@ -188,7 +196,7 @@ public class UserInterface {
 
         ok = false;
         choice = "";
-
+        //ADDRESS
         while (ok == false) {
             System.out.println("Do you want to add Address attribute? \n");
             System.out.println("Press 'A' for address or \n");
@@ -209,7 +217,7 @@ public class UserInterface {
 
         ok = false;
         choice = "";
-
+        //EDITION
         while (ok == false) {
             System.out.println("Do you want to add Edition attribute? \n");
             System.out.println("Press 'E' for edition or \n");
@@ -230,7 +238,7 @@ public class UserInterface {
 
         ok = false;
         choice = "";
-
+        //MONTH
         while (ok == false) {
             System.out.println("Do you want to add Month attribute?. \n");
             System.out.println("Press 'M' for month or \n");
@@ -251,7 +259,7 @@ public class UserInterface {
 
         ok = false;
         choice = "";
-
+        //NOTE
         while (ok == false) {
             System.out.println("Do you want to add Note attribute? \n");
             System.out.println("Press 'N' for note or \n");
@@ -448,7 +456,7 @@ public class UserInterface {
         inproceeding.setTitle(title);
 
         // add booktitle
-        String booktitle = attributes.addTitle();
+        String booktitle = attributes.addBooktitle();
         inproceeding.setBooktitle(booktitle);
 
         // add year
@@ -493,7 +501,7 @@ public class UserInterface {
 
             if (choice.equals("E")) {
                 String editor = attributes.addEditor();
-                inproceeding.setMonth(editor);
+                inproceeding.setEditor(editor);
                 ok = true;
             } else if (choice.equals("S")) {
                 ok = true;
@@ -521,7 +529,7 @@ public class UserInterface {
             } else if (choice.equals("S")) {
                 ok = true;
             } else {
-                System.out.println("Invalid choice!\n");
+                System.out.println("Invalid choice, try again! \n");
             }
         }
 
@@ -540,10 +548,10 @@ public class UserInterface {
             } else if (choice.equals("S")) {
                 ok = true;
             } else {
-                System.out.println("Invalid choice!\n");
+                System.out.println("Invalid choice, try again! \n");
             }
         }
-
+        
         ok = false;
         choice = "";
 
@@ -554,7 +562,7 @@ public class UserInterface {
 
             if (choice.equals("P")) {
                 String pages = attributes.addPages();
-                inproceeding.setMonth(pages);
+                inproceeding.setPages(pages);
                 ok = true;
             } else if (choice.equals("S")) {
                 ok = true;
@@ -573,12 +581,12 @@ public class UserInterface {
 
             if (choice.equals("A")) {
                 String address = attributes.addAddress();
-                inproceeding.setMonth(address);
+                inproceeding.setAddress(address);
                 ok = true;
             } else if (choice.equals("S")) {
                 ok = true;
             } else {
-                System.out.println("Invalid choice!\n");
+                System.out.println("Invalid choice, try again! \n");
             }
         }
 
@@ -611,12 +619,12 @@ public class UserInterface {
 
             if (choice.equals("O")) {
                 String organization = attributes.addOrganization();
-                inproceeding.setMonth(organization);
+                inproceeding.setOrganization(organization);
                 ok = true;
             } else if (choice.equals("S")) {
                 ok = true;
             } else {
-                System.out.println("Invalid choice!\n");
+                System.out.println("Invalid choice, try again! \n");
             }
         }
 
@@ -624,18 +632,18 @@ public class UserInterface {
         choice = "";
 
         while (ok == false) {
-            System.out.println("Do you want to add attribute for month? \n");
+            System.out.println("Do you want to add attribute for publisher? \n");
             System.out.println("Select (P) for yes and (S) to skip. \n");
             choice = scanner.nextLine();
 
             if (choice.equals("P")) {
                 String publisher = attributes.addPublisher();
-                inproceeding.setMonth(publisher);
+                inproceeding.setPublisher(publisher);
                 ok = true;
             } else if (choice.equals("S")) {
                 ok = true;
             } else {
-                System.out.println("Invalid choice!\n");
+                System.out.println("Invalid choice, try again! \n");
             }
         }
 
@@ -649,7 +657,7 @@ public class UserInterface {
 
             if (choice.equals("N")) {
                 String note = attributes.addNote();
-                inproceeding.setMonth(note);
+                inproceeding.setNote(note);
                 ok = true;
             } else if (choice.equals("S")) {
                 ok = true;

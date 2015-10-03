@@ -26,10 +26,10 @@ public class Article extends Reference {
         this.author = "";
         this.title = "";
         this.journal = "";
-        this.year = Integer.MAX_VALUE;
+        this.year = Integer.MIN_VALUE;
 
         this.volume = "";
-        this.number = Integer.MAX_VALUE;
+        this.number = Integer.MIN_VALUE;
         this.pages = "";
         this.month = "";
         this.note = "";
@@ -106,6 +106,5 @@ public class Article extends Reference {
     public void setNote(String note) {
         this.note = note;
     }
-    
     
 }

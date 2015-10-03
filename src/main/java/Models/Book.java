@@ -15,15 +15,12 @@ import main.java.Models.Generator;
  */
 public class Book extends Reference {
 
-    private String id;
-    private Integer reference_id;
-
     //  REQUIRED FIELDS
     private Integer year;
-    private String author;//or editor
+    private String author;
+    private String editor;
     private String title;
     private String publisher;
-    private String editor;
 
     //  OPTIONAL FIELDS
     private String volume;
@@ -35,8 +32,6 @@ public class Book extends Reference {
     private String note;
 
     public Book() {
-        this.reference_id = Generator.generateReferenceId();
-        this.id = UUID.randomUUID().toString();
         this.year = Integer.MIN_VALUE;
         this.author = "";
         this.title = "";
@@ -53,25 +48,40 @@ public class Book extends Reference {
 
     public Book(int year, String author, String title,
             String publisher) {
-        this.reference_id = Generator.generateReferenceId();
         this.year = year;
         this.author = author;
         this.title = title;
         this.publisher = publisher;
+        this.editor = "";
+        this.volume = "";
+        this.number = "";
+        this.series = "";
+        this.address = "";
+        this.edition = "";
+        this.month = "";
+        this.note = "";
     }
-
+    public Integer getYear() {
+        return year;
+    }
     public void setYear(Integer year) {
         this.year = year;
     }
-
+    public String getAuthor() {
+        return author;
+    }
     public void setAuthor(String author) {
         this.author = author;
     }
-
+    public String getTitle() {
+        return title;
+    }
     public void setTitle(String title) {
         this.title = title;
     }
-
+    public String getPublisher() {
+        return publisher;
+    }
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
@@ -140,26 +150,23 @@ public class Book extends Reference {
         this.note = note;
     }
 
-    @Override
-    public Integer getReference_id() {
-        return this.reference_id;
-    }
-
     /**
      *
      * @return the book in BibTex format
+     * 
      */
-    public String toBibTex() {
-        return "  " + getReference_id() + ", \n"
-                + "  author = {" + this.author + "}, \n"
-                + "  title = {" + this.title + "}, \n"
-                + "  publisher = {" + this.publisher + "}, \n"
-                + "  year = {" + this.year + "}, \n"
-                + "} \n";
-    }
-
-    @Override
-    public void print() {
-        System.out.println(toBibTex());
-    }
+//    public String toBibTex() {
+//        return ReferenceConverter.bookToBibTex(this);
+//        return "@book{GA03,\n"
+//                + "  author = {" + this.author + "}, \n"
+//                + "  title = {" + this.title + "}, \n"
+//                + "  publisher = {" + this.publisher + "}, \n"
+//                + "  year = {" + this.year + "}, \n"
+//                + "} \n";
+//    }
+//
+//    @Override
+//    public void print() {
+//        System.out.println(toBibTex());
+//    }
 }

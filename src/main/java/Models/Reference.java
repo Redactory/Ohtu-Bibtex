@@ -24,6 +24,7 @@ public class Reference {
     public Reference() {
         this.id = UUID.randomUUID().toString();
         this.timestamp = new Date();
+        reference_id = Generator.generateReferenceId();
     }
     
     public String getId() {

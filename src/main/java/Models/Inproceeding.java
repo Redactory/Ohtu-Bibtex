@@ -5,6 +5,7 @@
  */
 package main.java.Models;
 
+
 /**
  *
  * @author teemu
@@ -156,6 +157,4 @@ public class Inproceeding extends Reference {
     public void setNote(String note) {
         this.note = note;
     }
-    
-    
 }

@@ -11,11 +11,11 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * @author teemu
  */
-public class Generator {
+public final class Generator {
     
     private static AtomicInteger generator = new AtomicInteger();
     
-    public Generator() {
+    private Generator() {
 
     }
     

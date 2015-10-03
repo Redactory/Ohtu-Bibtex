@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI;
+package main.java.UI;
 
 import java.util.Scanner;
 
@@ -112,6 +112,22 @@ public class AttributeAdditionMethods {
 
         return title;
     }
+    
+    // Add Booktitle to reference.
+    public String addBooktitle() {
+        String booktitle = "";
+        boolean ok = false;
+
+        while (ok == false) {
+            System.out.println("Give the booktitle to be added: \n");
+            booktitle = this.scanner.nextLine();
+            booktitle = booktitle.trim();
+            ok = checkFieldsWithNumbers(booktitle);
+        }
+
+        return booktitle;
+    }
+
 
     // Add publisher to reference.
     public String addPublisher() {
