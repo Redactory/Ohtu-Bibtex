@@ -7,6 +7,7 @@ package UI;
 
 import Models.Book;
 import Models.Container;
+import Models.Reference;
 import java.util.Scanner;
 
 /**
@@ -46,7 +47,9 @@ public class UserInterface {
         if (answer.equals("B")) {
             addBookReference();
         } else if (answer.equals("L")) {
-            this.container.listReferences();
+            for (Reference ref : this.container.listReferences()) {
+                ref.print();
+            }        
             start();
         } else {
             System.out.println("Program ends!");

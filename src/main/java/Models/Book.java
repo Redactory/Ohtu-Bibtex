@@ -15,10 +15,10 @@ public class Book extends Reference {
 
     //  REQUIRED FIELDS
     private Integer year;
-    private String author;//or editor
+    private String author;
+    private String editor;
     private String title;
     private String publisher;
-    private String editor;
 
     //  OPTIONAL FIELDS
     private String volume;
@@ -51,20 +51,36 @@ public class Book extends Reference {
         this.author = author;
         this.title = title;
         this.publisher = publisher;
+        this.editor = "";
+        this.volume = "";
+        this.number = "";
+        this.series = "";
+        this.address = "";
+        this.edition = "";
+        this.month = "";
+        this.note = "";
     }
-
+    public Integer getYear() {
+        return year;
+    }
     public void setYear(Integer year) {
         this.year = year;
     }
-
+    public String getAuthor() {
+        return author;
+    }
     public void setAuthor(String author) {
         this.author = author;
     }
-
+    public String getTitle() {
+        return title;
+    }
     public void setTitle(String title) {
         this.title = title;
     }
-
+    public String getPublisher() {
+        return publisher;
+    }
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
@@ -136,14 +152,16 @@ public class Book extends Reference {
     /**
      *
      * @return the book in BibTex format
+     * 
      */
     public String toBibTex() {
-        return "@book{GA03,\n"
-                + "  author = {" + this.author + "}, \n"
-                + "  title = {" + this.title + "}, \n"
-                + "  publisher = {" + this.publisher + "}, \n"
-                + "  year = {" + this.year + "}, \n"
-                + "} \n";
+        return ReferenceConverter.bookToBibTex(this);
+//        return "@book{GA03,\n"
+//                + "  author = {" + this.author + "}, \n"
+//                + "  title = {" + this.title + "}, \n"
+//                + "  publisher = {" + this.publisher + "}, \n"
+//                + "  year = {" + this.year + "}, \n"
+//                + "} \n";
     }
 
     @Override

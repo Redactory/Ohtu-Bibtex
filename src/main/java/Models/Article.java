@@ -9,7 +9,7 @@ package Models;
  *
  * @author teemu
  */
-public class Article {
+public class Article extends Reference{
     public Article() {
         
     }

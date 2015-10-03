@@ -29,6 +29,7 @@ public class OhtuBibTex {
         Book book1 = new Book(1997, "Jennifer Lowett", "I Burn For You", "Harlequin");
         Book book2 = new Book(1889, "Don Rosa", "Life and Times of Scrooge McDuck", "Nothington");
         Book book3 = new Book(2000, "Steve Hackwell", "Fount east of Altaria", "Baen");
+        book3.setNumber("2");
         container.addReference(new Book(1896,"Jaakko","Jaakon selitykset","ACM"));
         container.addReference(new Book(2001,"Martti Laaksonen","Taide","DELTA"));
         

@@ -77,7 +77,7 @@ public class BookTest {
         String s = instance.toBibTex();
         //GA03 is temporarily id for all books
         //regex matching
-        boolean testVal = matchRegex(s, "@book[{]GA03,([\\s]*[a-zA-Z]+[\\s]*=" +
+        boolean testVal = matchRegex(s, "@book[{][a-z0-9[-]]+,([\\s]*[a-zA-Z]+[\\s]*=" +
                 "[\\s]*[{][^}]+[}],)+[\\s]*[}][\\s]*");
         assertTrue("String is not in BibTex format", testVal);
     }
