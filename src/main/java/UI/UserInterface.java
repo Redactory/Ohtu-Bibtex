@@ -49,6 +49,7 @@ public class UserInterface {
         System.out.println("- Add an inproceeding reference (I) \n");
         System.out.println("- List existing references (L) \n");
         System.out.println("- Export existing references to file (export) \n");
+        System.out.println("- End the program (press any other key) \n");
 
         String answer = this.scanner.nextLine();
 
