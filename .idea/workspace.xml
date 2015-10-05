@@ -2,72 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="098d1db0-2be7-46c8-aba2-4dc565225ddc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/main/java/Models/ArticleTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/main/java/Models/InproceedingTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/main/java/Models/ReferenceConverterTest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Models/Article.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Models/Book.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Models/Container.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Models/Inproceeding.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Models/Reference.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/UI/AttributeAdditionMethods.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/UI/UserInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/ohtu/bibtex/OhtuBibTex.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/cobertura/cobertura.ser" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-classes/cobertura/Models/Book.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-classes/cobertura/Models/Container.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-classes/cobertura/Models/Reference.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-classes/cobertura/UI/UserInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-classes/cobertura/cobertura.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/generated-classes/cobertura/ohtu/bibtex/OhtuBibTex.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/Models.Book.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/Models.Container.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/Models.Reference.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/UI.UserInterface.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/css/help.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/css/main.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/css/sortabletable.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/css/source-viewer.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/css/tooltip.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/frame-packages.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/frame-sourcefiles-Models.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/frame-sourcefiles-UI.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/frame-sourcefiles-ohtu.bibtex.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/frame-sourcefiles.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/frame-summary-Models.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/frame-summary-UI.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/frame-summary-ohtu.bibtex.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/frame-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/help.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/images/blank.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/images/downsimple.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/images/upsimple.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/js/customsorttypes.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/js/popup.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/js/sortabletable.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/js/stringbuilder.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/site/cobertura/ohtu.bibtex.OhtuBibTex.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/surefire-reports/Models.BookTest.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/surefire-reports/Models.ContainerTest.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/surefire-reports/Models.ReferenceTest.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-Models.BookTest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-Models.ContainerTest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-Models.ReferenceTest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/Models/BookTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/Models/ContainerTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/Models/ReferenceTest.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Models/Generator.java" afterPath="$PROJECT_DIR$/src/main/java/Models/Generator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ohtu-Bibtex.iml" afterPath="$PROJECT_DIR$/Ohtu-Bibtex.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/main/java/Models/ReferenceTest.java" afterPath="$PROJECT_DIR$/test/main/java/Models/ReferenceTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" afterPath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nbproject/private/private.properties" afterPath="$PROJECT_DIR$/nbproject/private/private.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nbproject/private/private.xml" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Ohtu-Bibtex.iws" />
@@ -122,7 +56,18 @@
     <favorites_list name="Ohtu-Bibtex" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.15437393" vertical-offset="0" max-vertical-offset="583">
+              <caret line="6" column="20" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -809,16 +754,36 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1436" height="877" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299363" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22165605" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22165605" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299363" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -827,12 +792,12 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299363" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12553802" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299363" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964131" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24031563" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24031563" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28025478" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -921,14 +886,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="795">
           <caret line="16" column="23" selection-start-line="0" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11889036" vertical-offset="0" max-vertical-offset="757">
-          <caret line="6" column="20" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1033,6 +990,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.121532366" vertical-offset="79" max-vertical-offset="836">
           <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15437393" vertical-offset="0" max-vertical-offset="583">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="20" />
           <folding />
         </state>
       </provider>
