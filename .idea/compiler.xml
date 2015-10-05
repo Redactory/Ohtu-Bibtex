@@ -26,5 +26,8 @@
         <module name="Ohtu-Bibtex" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Ohtu-Bibtex" target="1.6" />
+    </bytecodeTargetLevel>
   </component>
 </project>
