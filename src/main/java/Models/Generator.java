@@ -12,7 +12,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author teemu
  */
 public final class Generator {
-    
+
+    //TODO: Rakenne ei ole testattava. FIX
     private static AtomicInteger generator = new AtomicInteger();
     
     private Generator() {
@@ -23,7 +24,7 @@ public final class Generator {
         if (generator == null) {
             System.out.println("ON null!");
         }
-        
+
         Integer luku = generator.incrementAndGet();
         return luku;
     }

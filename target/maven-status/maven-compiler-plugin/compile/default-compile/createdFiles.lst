@@ -1,5 +1,11 @@
-Models/Reference.class
-Models/Book.class
-ohtu/bibtex/OhtuBibTex.class
-UI/UserInterface.class
-Models/Container.class
+main/java/IO/IO.class
+main/java/Models/Book.class
+main/java/Models/Generator.class
+main/java/Models/ReferenceConverter.class
+main/java/UI/AttributeAdditionMethods.class
+main/java/Models/Inproceeding.class
+main/java/Models/Article.class
+main/java/Models/Reference.class
+main/java/ohtu/bibtex/OhtuBibTex.class
+main/java/Models/Container.class
+main/java/UI/UserInterface.class

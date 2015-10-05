@@ -1,19 +1,17 @@
+package main.java.UI;
+
+import java.io.File;
+import java.util.Scanner;
+
+import main.java.IO.IO;
+import main.java.Models.*;
+import main.java.UI.AttributeAdditionMethods;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
-package main.java.UI;
 
-import main.java.Models.Article;
-import main.java.Models.Book;
-import main.java.Models.Container;
-import main.java.Models.Inproceeding;
-import main.java.Models.Reference;
-import java.io.File;
-import java.util.Scanner;
-import main.java.IO.IO;
-import main.java.Models.ReferenceConverter;
+
 
 /**
  *

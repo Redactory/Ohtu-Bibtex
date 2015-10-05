@@ -42,25 +42,35 @@ public class ReferenceTest {
      * Test of getId method, of class Reference.
      */
     @Test
-    public void testGetId() {
+    public void testGetId() throws Exception {
         System.out.println("getId");
         Reference instance = new Reference();
         String expResult = "";
         String result = instance.getId();
 
-        // TODO review the generated test code and remove the default call to fail.
         assertEquals(true, !result.isEmpty());
     }
 
     /**
      * Test of print method, of class Reference.
      */
-    public void testPrint() {
+    @Test
+    public void testPrint() throws Exception {
         System.out.println("print");
         Reference instance = new Reference();
         instance.print();
-        // TODO review the generated test code and remove the default call to fail.
+    }
 
+    @Test
+    public void testSetTimestamp() throws Exception {
+        Reference r = new Reference();
+        r.setTimestamp(new Date());
+    }
+
+    @Test
+    public void testSetReferenceId() throws Exception {
+        Reference r = new Reference();
+        r.setReference_id(1);
     }
     
 }
