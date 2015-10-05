@@ -1,5 +1,8 @@
 # Ohtu-Bibtex
 
+Trello:
+https://trello.com/b/pB6lKuI7/miniprojekti
+
 Burndown chart:
 https://BurndownForTrello.com/share/6bhmca5djr
 
