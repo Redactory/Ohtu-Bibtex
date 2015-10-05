@@ -44,7 +44,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="fi"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -63,7 +63,7 @@
     <property name="sun.cpu.isalist" value=""/>
   </properties>
   <testcase classname="main.java.Models.ReferenceTest" name="testGetId" time="0"/>
-  <testcase classname="main.java.Models.ReferenceTest" name="testPrint" time="0.001"/>
-  <testcase classname="main.java.Models.ReferenceTest" name="testSetTimestamp" time="0"/>
+  <testcase classname="main.java.Models.ReferenceTest" name="testPrint" time="0"/>
+  <testcase classname="main.java.Models.ReferenceTest" name="testSetTimestamp" time="0.001"/>
   <testcase classname="main.java.Models.ReferenceTest" name="testSetReferenceId" time="0"/>
 </testsuite>
