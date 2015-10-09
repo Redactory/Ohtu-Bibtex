@@ -30,7 +30,7 @@ public class UserInterface {
 
     public UserInterface() {
         container = new Container();
-        scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in, "ISO-8859-1");
         attributes = new AttributeAdditionMethods();
     }
 

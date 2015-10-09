@@ -39,7 +39,7 @@ public class AttributeAdditionMethods {
 
     // Regex-check for fields that have only alphabet-characters.
     private boolean checkFieldsWithoutNumbers(String field) {
-        regex = "([a-zA-Z[-]]+[\\s]*)+";
+        regex = "([a-zA-Z[-]]+[\\s]*+[\\p{L}]+)+";
 
         if (field.matches(regex)) {
             return true;
@@ -53,7 +53,7 @@ public class AttributeAdditionMethods {
 
     // Regex-check for fields that have both characters and numbers.
     private boolean checkFieldsWithNumbers(String field) {
-        regex = "([a-zA-Z0-9[-]]+[\\s]*)+";
+        regex = "([a-zA-Z0-9[-]]+[\\s]*+[\\p{L}]+)+";
 
         if (field.matches(regex)) {
             return true;
