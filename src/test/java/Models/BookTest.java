@@ -6,7 +6,8 @@ package Models;/*
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import Models.Book;
+import main.java.Models.Book;
+import main.java.Models.ReferenceConverter;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -56,28 +57,28 @@ public class BookTest {
         b.setYear(1010);
     }
 
-    @Test
-    public void testPrint(){
-        Book b = new Book();
-        b.print();
-    }
+//    @Test
+//    public void testPrint(){
+//        Book b = new Book();
+//        b.print();
+//    }
 
     @Test
     public void testToBibTex() {
         System.out.println("toBibTex");
         Book instance = new Book(2011, "Jaakko Murmi", "", "ACM");
-        String s = instance.toBibTex();
+        //String s = instance.toBibTex();
         //test correct format without taking fields into account
     }
-
+    //does not belong here
     @Test
     public void testToBibTexHasCorrectFormat() {
         System.out.println("toBibTex");
         Book instance = new Book(2011, "Jaakko Nurmi", "Teokset 2", "ACM");
-        String s = instance.toBibTex();
+        String s = ReferenceConverter.bookToBibTex(instance);
         //GA03 is temporarily id for all books
         //regex matching
-        boolean testVal = matchRegex(s, "@book[{]GA03,([\\s]*[a-zA-Z]+[\\s]*=" +
+        boolean testVal = matchRegex(s, "@book[{][0-9]+,([\\s]*[a-zA-Z]+[\\s]*=" +
                 "[\\s]*[{][^}]+[}],)+[\\s]*[}][\\s]*");
         assertTrue("String is not in BibTex format", testVal);
     }

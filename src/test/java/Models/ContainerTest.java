@@ -1,14 +1,16 @@
-package Models;/*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-import Models.Reference;
-import Models.Container;
+package Models;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
+
+import main.java.Models.Container;
+import main.java.Models.Reference;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,27 +23,27 @@ import static org.junit.Assert.*;
  * @author teemu
  */
 public class ContainerTest {
-
+    
     public ContainerTest() {
     }
-
+    
     @BeforeClass
     public static void setUpClass() {
     }
-
+    
     @AfterClass
     public static void tearDownClass() {
     }
-
+    
     @Before
     public void setUp() {
     }
-
+    
     @After
     public void tearDown() {
     }
 
-    /**
+   /**
      * Test of addReference method, of class Container.
      */
     @Test
@@ -85,5 +87,5 @@ public class ContainerTest {
 
 
     }
-
+    
 }
