@@ -9,10 +9,12 @@ import main.java.Models.Reference;
 import main.java.Models.ReferenceConverter;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -20,22 +22,27 @@ import java.util.List;
  */
 public class IO {
 
-    public IO() {
+    private IO() {
     }
-    //TODO
-    public char[] readBibTexFile(File file){       
-//        try {
-//           FileReader reader = new FileReader(file);
-//        } catch (Exception e) {
-//            System.err.print("Io error reading file" +file.getPath());
-//        }
+    public static String readBibTexFile(File file){       
+        try {
+           //FileReader reader = new FileReader(file); 
+            Scanner scan = new Scanner(file).useDelimiter("\\A");
+            String string = scan.next();
+            scan.close();
+            return string;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.err.print("Io error reading file" +file.getPath());
+        }
         return null;
     }
     
     public static boolean exportToBibTex(File file, List<Reference> refs){
         try {
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
+            //FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(file.getAbsoluteFile()),"UTF-8");
+            BufferedWriter bw = new BufferedWriter(osw);
             for (Reference ref : refs) {
                 bw.write(ReferenceConverter.toBibTex(ref));
             }

@@ -70,6 +70,7 @@ public class UserInterface {
             start();
         } else {
             System.out.println("Program ends!");
+            IO.exportToBibTex(new File("bib_data.bib"), container.listReferences());
             System.exit(0);
         }
     }
