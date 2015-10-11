@@ -59,6 +59,7 @@ public class UserInterface {
         System.out.println("- Add a book reference (B) \n");
         System.out.println("- Add an article reference (A) \n");
         System.out.println("- Add an inproceeding reference (I) \n");
+        System.out.println("- Update a reference (U) \n");
         System.out.println("- List existing references (L) \n");
         System.out.println("- List existing references by writer (Lw) \n");
         System.out.println("- List existing references by publisher (Lp) \n");
@@ -82,6 +83,9 @@ public class UserInterface {
             addArticleReference();
         } else if (answer.equals("I")) {
             addInproceedingReference();
+        } else if (answer.equals("U")) {
+            updateReference();
+            start();
         } else if (answer.equals("L")) {
             for (Reference ref : this.container.listReferences()) {
                 System.out.println(ReferenceConverter.toBibTex(ref));
@@ -849,5 +853,87 @@ public class UserInterface {
             }
         }
         start();
+    //metodin viitetietojen muokkaamista varten
+    public void updateReference() {
+
+        //kysytään mitä viitettä halutaan muokata
+        //haetaan haluttu viite
+        //kysytään mikä kohta halutaan muokta
+        //kysytään niin kauan, kunnes käyttäjä sanoo, että haluaa poistua
+        System.out.println("Give the reference ID you want to modify. \n");
+        String choice = scanner.nextLine();
+
+        // TODO Fix This after search method is available 
+        List<Reference> list = container.listReferences();
+        Reference ref = null;
+        for (Reference r : list) {
+            if (r.getClass() == Article.class) {
+                ref = r;
+            }
+        }
+
+        if (ref.getClass() == Article.class) {
+            Article article = (Article) ref;
+            Integer line = 1;
+            
+            while (line != 0) {
+                System.out.println("Current data in article:");
+                System.out.println("1) Author: " + article.getAuthor());
+                System.out.println("2) Title: " + article.getTitle());
+                System.out.println("3) Journal: " + article.getJournal());
+                System.out.println("4) Year: " + article.getYear());
+                System.out.println("5) Volume: " + article.getVolume());
+                System.out.println("6) Number: " + article.getNumber());
+                System.out.println("7) Pages: " + article.getPages());
+                System.out.println("8) Month: " + article.getMonth());
+                System.out.println("9) Note: " + article.getNote() + "\n");
+
+                System.out.println("Which line (number 1-9) do you want to update or do you want to leave (0)? \n");
+                line = scanner.nextInt();  
+                String cr = scanner.nextLine();
+                
+                if (line < 0 || line > 9){
+                    System.out.println("Give the line number (1-9) you want to update or give (0) if you want to leave. \n");
+                    line = scanner.nextInt();
+                }
+                
+                else if (line == 4 || line == 6) {
+                    System.out.println("Give new value: ");
+                    Integer number = scanner.nextInt();
+                    cr = scanner.nextLine();
+                    if (line == 4) {
+                        article.setYear(number);
+                    } else if (line == 6) {
+                        article.setNumber(number);
+                    }
+
+                } else if (line > 0 && line < 4 || line == 5 || line > 6 && line < 10){
+                    System.out.println("Give new value: ");
+                    String value = scanner.nextLine();
+
+                    if (line == 1) {
+                        article.setAuthor(value);
+                    } else if (line == 2) {
+                        article.setTitle(value);
+                    } else if (line == 3) {
+                        article.setJournal(value);
+                    } else if (line == 5) {
+                        article.setVolume(value);
+                    } else if (line == 7) {
+                        article.setPages(value);
+                    } else if (line == 8) {
+                        article.setMonth(value);
+                    } else if (line == 9) {
+                        article.setNote(value);
+                    }
+                } 
+
+            }
+            
+        } else if (ref.getClass() == Book.class) {
+            System.out.println("Not yet implemented");
+        } else if (ref.getClass() == Inproceeding.class) {
+            System.out.println("Not yet implemented");
+        }
     }
 }
