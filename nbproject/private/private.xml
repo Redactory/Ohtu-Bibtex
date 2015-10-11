@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/heli/Netbeans_projects/ohtu/Ohtu-Bibtex/src/main/java/Models/ReferenceConverter.java</file>
+            <file>file:/home/heli/Netbeans_projects/ohtu/Ohtu-Bibtex/src/main/java/Models/Article.java</file>
+            <file>file:/home/heli/Netbeans_projects/ohtu/Ohtu-Bibtex/src/main/java/Models/Reference.java</file>
+            <file>file:/home/heli/Netbeans_projects/ohtu/Ohtu-Bibtex/src/main/java/Models/Generator.java</file>
+            <file>file:/home/heli/Netbeans_projects/ohtu/Ohtu-Bibtex/src/main/java/ohtu/bibtex/OhtuBibTex.java</file>
+            <file>file:/home/heli/Netbeans_projects/ohtu/Ohtu-Bibtex/src/main/java/Models/Book.java</file>
+            <file>file:/home/heli/Netbeans_projects/ohtu/Ohtu-Bibtex/src/main/java/Models/Container.java</file>
+            <file>file:/home/heli/Netbeans_projects/ohtu/Ohtu-Bibtex/src/main/java/UI/AttributeAdditionMethods.java</file>
+            <file>file:/home/heli/Netbeans_projects/ohtu/Ohtu-Bibtex/src/main/java/UI/UserInterface.java</file>
+            <file>file:/home/heli/Netbeans_projects/ohtu/Ohtu-Bibtex/src/main/java/IO/IO.java</file>
+        </group>
     </open-files>
 </project-private>
