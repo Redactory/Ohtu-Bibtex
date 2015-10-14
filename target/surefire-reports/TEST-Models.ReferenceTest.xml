@@ -63,8 +63,8 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="Models.ReferenceTest" name="testGetId" time="0"/>
   <testcase classname="Models.ReferenceTest" name="testPrint" time="0"/>
+  <testcase classname="Models.ReferenceTest" name="testGetId" time="0"/>
   <testcase classname="Models.ReferenceTest" name="testSetTimestamp" time="0"/>
   <testcase classname="Models.ReferenceTest" name="testSetReferenceId" time="0"/>
 </testsuite>
