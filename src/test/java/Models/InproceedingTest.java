@@ -1,6 +1,6 @@
 package Models;
 
-import main.java.Models.Inproceeding;
+import Models.Inproceeding;
 import org.junit.Test;
 
 import javax.naming.InsufficientResourcesException;

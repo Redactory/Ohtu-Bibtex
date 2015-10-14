@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.IO;
+package IO;
 
-import main.java.Models.Reference;
-import main.java.Models.ReferenceConverter;
+import Models.Reference;
+import Models.ReferenceConverter;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.List;
@@ -41,11 +40,12 @@ public class IO {
     public static boolean exportToBibTex(File file, List<Reference> refs){
         try {
             //FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(file.getAbsoluteFile()),"UTF-8");
+            OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(file.getAbsoluteFile()));
             BufferedWriter bw = new BufferedWriter(osw);
             for (Reference ref : refs) {
                 bw.write(ReferenceConverter.toBibTex(ref));
             }
+            bw.flush();
             bw.close();
             return true;
         } catch (IOException e) {

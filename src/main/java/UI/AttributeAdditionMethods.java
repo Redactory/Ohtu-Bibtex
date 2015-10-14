@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.UI;
+package UI;
 
 import java.util.Scanner;
 
@@ -39,8 +39,9 @@ public class AttributeAdditionMethods {
 
     // Regex-check for fields that have only alphabet-characters.
     private boolean checkFieldsWithoutNumbers(String field) {
-        regex = "([a-zA-Z[-]]+[\\s]*+[\\p{L}]+)+";
-
+//        regex = "([a-zA-Z[-]]+[\\s]*+[\\p{L}]+)+";
+        
+        regex = "([\\p{L}[-]]+[\\s]*)+";
         if (field.matches(regex)) {
             return true;
         } else {
@@ -53,7 +54,8 @@ public class AttributeAdditionMethods {
 
     // Regex-check for fields that have both characters and numbers.
     private boolean checkFieldsWithNumbers(String field) {
-        regex = "([a-zA-Z0-9[-]]+[\\s]*+[\\p{L}]+)+";
+        //any letter(no special characters), numbers 0-9, char '-' and any number of spaces between any of them 
+        regex = "([\\p{L}0-9[-]]+[\\s]*)+";
 
         if (field.matches(regex)) {
             return true;

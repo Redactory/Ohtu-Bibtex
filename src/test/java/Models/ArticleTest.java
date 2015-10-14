@@ -1,6 +1,6 @@
 package Models;
 
-import main.java.Models.Article;
+import Models.Article;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

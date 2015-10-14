@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="12" failures="0" name="Models.ArticleTest" time="0.098" errors="0" skipped="0">
+<testsuite tests="12" failures="0" name="Models.ArticleTest" time="0.117" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_60\jre\bin"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="Service Pack 1"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="F:\17.7.2015 bak\Git\bibib"/>
+    <property name="user.dir" value="F:\17.7.2015 bak\Git\Ohtu-Bibtex"/>
     <property name="java.runtime.version" value="1.8.0_60-b27"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_60\jre\lib\endorsed"/>
@@ -45,7 +45,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_60\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Programs\NetBeans 8.0.2\java\maven-nblib\netbeans-eventspy.jar clean install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Programs\NetBeans 8.0.2\java\maven-nblib\netbeans-eventspy.jar test"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="user.language.format" value="fi"/>
@@ -63,16 +63,16 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="Models.ArticleTest" name="testGetJournal" time="0.061"/>
-  <testcase classname="Models.ArticleTest" name="testSetTitle" time="0"/>
-  <testcase classname="Models.ArticleTest" name="getPages" time="0"/>
-  <testcase classname="Models.ArticleTest" name="getNote" time="0"/>
-  <testcase classname="Models.ArticleTest" name="testSetJournal" time="0"/>
-  <testcase classname="Models.ArticleTest" name="setNote" time="0"/>
-  <testcase classname="Models.ArticleTest" name="setPages" time="0"/>
-  <testcase classname="Models.ArticleTest" name="testGetYear" time="0"/>
-  <testcase classname="Models.ArticleTest" name="testGetAuthor" time="0"/>
-  <testcase classname="Models.ArticleTest" name="testGetTitle" time="0"/>
+  <testcase classname="Models.ArticleTest" name="testGetTitle" time="0.067"/>
   <testcase classname="Models.ArticleTest" name="testSetAuthor" time="0"/>
+  <testcase classname="Models.ArticleTest" name="setPages" time="0"/>
+  <testcase classname="Models.ArticleTest" name="testSetJournal" time="0.001"/>
+  <testcase classname="Models.ArticleTest" name="setNote" time="0.004"/>
+  <testcase classname="Models.ArticleTest" name="getPages" time="0"/>
+  <testcase classname="Models.ArticleTest" name="testSetTitle" time="0"/>
+  <testcase classname="Models.ArticleTest" name="testGetJournal" time="0"/>
   <testcase classname="Models.ArticleTest" name="testSetYear" time="0"/>
+  <testcase classname="Models.ArticleTest" name="testGetAuthor" time="0"/>
+  <testcase classname="Models.ArticleTest" name="getNote" time="0"/>
+  <testcase classname="Models.ArticleTest" name="testGetYear" time="0"/>
 </testsuite>

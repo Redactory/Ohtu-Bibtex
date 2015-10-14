@@ -6,8 +6,8 @@ package Models;/*
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import main.java.Models.Book;
-import main.java.Models.ReferenceConverter;
+import Models.Book;
+import Models.ReferenceConverter;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

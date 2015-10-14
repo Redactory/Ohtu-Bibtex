@@ -1,9 +1,9 @@
-package main.java.Models;
+package Models;
 
 
 import java.util.Date;
 import java.util.UUID;
-import main.java.Models.Generator;
+import Models.Generator;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

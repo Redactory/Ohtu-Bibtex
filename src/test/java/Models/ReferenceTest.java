@@ -7,7 +7,7 @@ package Models;
 
 import java.util.Date;
 
-import main.java.Models.Reference;
+import Models.Reference;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import main.java.Models.Container;
-import main.java.Models.Reference;
+import Models.Container;
+import Models.Reference;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

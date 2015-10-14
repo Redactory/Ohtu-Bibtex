@@ -1,11 +1,11 @@
-package main.java.UI;
+package UI;
 
 import java.io.File;
 import java.util.Scanner;
 
-import main.java.IO.IO;
-import main.java.Models.*;
-import main.java.UI.AttributeAdditionMethods;
+import IO.IO;
+import Models.*;
+import UI.AttributeAdditionMethods;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
