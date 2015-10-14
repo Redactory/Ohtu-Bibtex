@@ -50,6 +50,7 @@ public class ContainerTest {
     public void testAddReference() {
         System.out.println("addReference");
         Reference r = new Reference();
+        r.setId(""+1);
         Container instance = new Container();
         instance.addReference(r);
         // TODO review the generated test code and remove the default call to fail.
@@ -64,6 +65,7 @@ public class ContainerTest {
     public void testDeleteReference() {
         System.out.println("deleteReference");
         Reference r = new Reference();
+        r.setId(""+1);
         Container instance = new Container();
         instance.addReference(r);
         instance.deleteReference(r);
@@ -79,6 +81,7 @@ public class ContainerTest {
         System.out.println("listReferences");
         Container instance = new Container();
         Reference r = new Reference();
+        r.setId(""+1);
         List<Reference> expResult = new ArrayList<Reference>();
         instance.addReference(r);
         expResult.add(r);

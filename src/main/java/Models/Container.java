@@ -47,4 +47,9 @@ public class Container {
         }
         return l;
     }
+    
+    public Boolean containsId(String id){
+        return references.containsKey(id);
+    }
+            
 }

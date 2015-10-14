@@ -13,10 +13,11 @@ import UI.AttributeAdditionMethods;
 
 
 
-/**
+ /**
  *
  * @author teemu
  */
+
 public class UserInterface {
 
     // User interface container object.
@@ -132,8 +133,10 @@ public class UserInterface {
             }
 
         }
+        // Add reference_id based on author name
+
         // Attribute definition ends, book is created.
-        container.addReference(book);
+        addToContainer(book);
 
         System.out.println("new book reference has been created!");
         System.out.println("There are now " + this.container.getReferences().size()
@@ -142,7 +145,54 @@ public class UserInterface {
         start();
     }
 
+    private void addToContainer(Reference ref) {
+        addIdToRef(ref);
+        container.addReference(ref);
+    }
+
+     
+    /**
+     * Returns the first word from String with words. Words are separated by
+     * either whitespace or comma.
+     *
+     * @param words
+     */
+    private String getFirstWord(String words) {
+        return words.split("[\\s,]")[0];
+    }
+
+    private boolean isDuplicateId(String id) {
+        return container.containsId(id);
+    }
+
+    /**
+     * Adds id field to Reference
+     *
+     * @param ref
+     */
+    private void addIdToRef(Reference ref) {
+        String name="";
+        if (ref.getClass().isAssignableFrom(Book.class)) {
+            Book book = (Book) ref;
+            name = book.getAuthor();
+        } else if (ref.getClass().isAssignableFrom(Article.class)) {
+            Article article = (Article) ref;
+            name = article.getAuthor();
+        } else if (ref.getClass().isAssignableFrom(Inproceeding.class)) {
+            Inproceeding inproceeding = (Inproceeding) ref;
+            name = inproceeding.getAuthor();
+        }
+           
+        long atomicNumber=1;
+        String testId=getFirstWord(name);
+        while(isDuplicateId(testId+atomicNumber)){
+            atomicNumber++;
+        }
+        ref.setId(testId+atomicNumber);
+    }
+
     // Method for adding optional book references.
+
     private Book addOptionalBookReferences(Book book) {
         boolean ok = false;
         String choice = "";
@@ -323,7 +373,7 @@ public class UserInterface {
         }
 
         // Attribute definition ends, article is created.
-        container.addReference(article);
+        addToContainer(article);
 
         System.out.println("A new article reference has been created!");
         System.out.println("There are now " + this.container.getReferences().size()
@@ -481,7 +531,7 @@ public class UserInterface {
         }
 
         // Attribute definition ends, article is created.
-        container.addReference(inproceeding);
+        addToContainer(inproceeding);
 
         System.out.println("A new inproceeding reference has been created!");
         System.out.println("There are now " + this.container.getReferences().size()
@@ -551,7 +601,7 @@ public class UserInterface {
                 System.out.println("Invalid choice, try again! \n");
             }
         }
-        
+
         ok = false;
         choice = "";
 

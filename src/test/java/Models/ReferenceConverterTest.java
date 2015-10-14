@@ -53,6 +53,7 @@ public class ReferenceConverterTest {
         System.out.println("toBibTex");
         Inproceeding instance = new Inproceeding();
         instance.setAuthor("Minna Juoni");
+        instance.setId("Minna1");
         instance.setTitle("Hiton Bibtex");
         instance.setBooktitle("latex markkinat");
         instance.setYear(12345678);
@@ -64,7 +65,7 @@ public class ReferenceConverterTest {
         
         String s = ReferenceConverter.inproceedingToBibTex(instance);
         //regex matching
-        boolean testVal = matchRegex(s, "@inproceedings[{][0-9]+,([\\s]*[a-zA-Z]+[\\s]*="
+        boolean testVal = matchRegex(s, "@inproceedings[{][\\p{L}]+[0-9]+,([\\s]*[a-zA-Z]+[\\s]*="
                 + "[\\s]*[{][^}]+[}],)+[\\s]*[}][\\s]*");
         assertTrue("String is not in BibTex format", testVal);
     }
@@ -74,6 +75,7 @@ public class ReferenceConverterTest {
         System.out.println("toBibTex");
         Article instance = new Article();
         instance.setAuthor("Minna Juoni");
+        instance.setId("Minna1");
         instance.setTitle("Hiton Bibtex");
         instance.setJournal("kinostuksen ässälehti");
         instance.setYear(12345678);
@@ -85,7 +87,7 @@ public class ReferenceConverterTest {
         
         String s = ReferenceConverter.articleToBibTex(instance);
         //regex matching
-        boolean testVal = matchRegex(s, "@article[{][0-9]+,([\\s]*[a-zA-Z]+[\\s]*="
+        boolean testVal = matchRegex(s, "@article[{][\\p{L}]+[0-9]+,([\\s]*[a-zA-Z]+[\\s]*="
                 + "[\\s]*[{][^}]+[}],)+[\\s]*[}][\\s]*");
         assertTrue("String is not in BibTex format", testVal);
     }
@@ -94,9 +96,10 @@ public class ReferenceConverterTest {
     public void testBookToBibTexHasCorrectFormat() {
         System.out.println("toBibTex");
         Book instance = new Book(2011, "Jaakko Nurmi", "Teokset 2", "ACM");
+        instance.setId("Jaakko1");
         String s = ReferenceConverter.bookToBibTex(instance);
         //regex matching
-        boolean testVal = matchRegex(s, "@book[{][0-9]+,([\\s]*[a-zA-Z]+[\\s]*="
+        boolean testVal = matchRegex(s, "@book[{][\\p{L}]+[0-9]+,([\\s]*[a-zA-Z]+[\\s]*="
                 + "[\\s]*[{][^}]+[}],)+[\\s]*[}][\\s]*");
         assertTrue("String is not in BibTex format", testVal);
     }

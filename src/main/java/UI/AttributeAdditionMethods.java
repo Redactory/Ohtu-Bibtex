@@ -5,6 +5,10 @@
  */
 package UI;
 
+import Models.Article;
+import Models.Book;
+import Models.Inproceeding;
+import Models.Reference;
 import java.util.Scanner;
 
 /**

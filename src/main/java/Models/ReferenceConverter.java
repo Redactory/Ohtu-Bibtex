@@ -40,7 +40,7 @@ public final class ReferenceConverter {
     }
 
     public static String inproceedingToBibTex(Inproceeding i) {
-        begin("inproceedings", i.getReference_id().toString());
+        begin("inproceedings", i.getId());
         add("author", i.getAuthor());
         add("title", i.getTitle());
         add("booktitle", i.getBooktitle());
@@ -64,7 +64,7 @@ public final class ReferenceConverter {
     }
 
     public static String articleToBibTex(Article a) {
-        begin("article", a.getReference_id().toString());
+        begin("article", a.getId());
         //class incomplete
         add("author", a.getAuthor());
         add("title", a.getTitle());
@@ -90,7 +90,7 @@ public final class ReferenceConverter {
      * @return
      */
     public static String bookToBibTex(Book b) {
-        begin("book", b.getReference_id().toString());
+        begin("book", b.getId());
         add("author", b.getAuthor());
         add("editor", b.getEditor());
         add("title", b.getTitle());
@@ -131,6 +131,7 @@ public final class ReferenceConverter {
             //construct Reference model
             if (refAndId[0].equals("book")) {
                 Book b = new Book();
+                b.setId(refAndId[1]);
                 for (int j = 1; j < lines.length - 1; j++) {
                     String[] attrs = lines[j].split("=");
                     attrs[0] = attrs[0].trim();
@@ -140,6 +141,7 @@ public final class ReferenceConverter {
                 refs.add(b);
             } else if (refAndId[0].equals("inproceedings")) {
                 Inproceeding in = new Inproceeding();
+                in.setId(refAndId[1]);
                 for (int j = 1; j < lines.length - 1; j++) {
                     String[] attrs = lines[j].split("=");
                     attrs[0] = attrs[0].trim();
@@ -149,6 +151,7 @@ public final class ReferenceConverter {
                 refs.add(in);
             } else if (refAndId[0].equals("article")) {
                 Article a = new Article();
+                a.setId(refAndId[1]);
                 for (int j = 1; j < lines.length - 1; j++) {
                     String[] attrs = lines[j].split("=");
                     attrs[0] = attrs[0].trim();
