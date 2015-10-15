@@ -7,6 +7,8 @@ package Models;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -110,7 +112,7 @@ public final class ReferenceConverter {
         //split by @ char
         String[] publications = bibTex.split("@");
         List<Reference> refs = new LinkedList();
-        
+
         for (int i = 1; i < publications.length; i++) {
             String publication = publications[i];
             String[] lines = publication.split("\\n");
