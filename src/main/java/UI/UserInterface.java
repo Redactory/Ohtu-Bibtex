@@ -27,11 +27,15 @@ public class UserInterface {
 
     // Object for managing attribute addition to references.
     AttributeAdditionMethods attributes;
+    
+    // Object for search services.
+    Search search;
 
     public UserInterface() {
         container = new Container();
         scanner = new Scanner(System.in, "ISO-8859-1");
         attributes = new AttributeAdditionMethods();
+        search = new Search();
     }
 
     public Container getContainer() {
@@ -39,6 +43,9 @@ public class UserInterface {
     }
 
     public void start() {
+        String answer = "";
+        Reference reference = new Reference();
+        
         System.out.println("MAIN MENU \n");
         System.out.println("You can perform following actions. "
                 + "Press the key in the wave-bracket:");
@@ -47,10 +54,16 @@ public class UserInterface {
         System.out.println("- Add an inproceeding reference (I) \n");
         System.out.println("- List existing references (L) \n");
         System.out.println("- Export existing references to file (export) \n");
+        System.out.println("- find a reference though it's reference-id (find) \n");
+        System.out.println("- Delete existing reference by it's id (delete) \n");
         System.out.println("- End the program (press any other key) \n");
 
-        String answer = this.scanner.nextLine();
+//        String answer = this.scanner.nextLine();
 
+        if (answer.isEmpty()) {
+            answer = this.scanner.nextLine();
+        }
+        
         if (answer.equals("B")) {
             addBookReference();
         } else if (answer.equals("A")) {
@@ -68,6 +81,10 @@ public class UserInterface {
             answer = scanner.nextLine();
             IO.exportToBibTex(new File(answer), container.listReferences());
             start();
+        } else if (answer.equals("find")) {
+            reference = search.findReference();
+        } else if(answer.equals("delete")) {
+            search.deleteReference();
         } else {
             System.out.println("Program ends!");
             IO.exportToBibTex(new File("bib_data.bib"), container.listReferences());

@@ -75,7 +75,7 @@ public class ReferenceConverterTest {
         Article instance = new Article();
         instance.setAuthor("Minna Juoni");
         instance.setTitle("Hiton Bibtex");
-        instance.setJournal("kinostuksen ‰ss‰lehti");
+        instance.setJournal("kinostuksen √§ss√§lehti");
         instance.setYear(12345678);
         instance.setVolume("5.");
         instance.setNumber(9);

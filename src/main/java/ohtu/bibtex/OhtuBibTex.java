@@ -29,6 +29,11 @@ public class OhtuBibTex {
         Container container = userInterface.getContainer();
         //Adding some book references
         String string = IO.readBibTexFile(new File("bib_data.bib"));
+        
+        if (string == null) {
+            System.out.println("STRINGI ON TYHJÄ!!!");
+        }
+        
         List<Reference> refs = ReferenceConverter.bibTexToReference(string);
         for (Reference ref : refs) {
             container.addReference(ref);
