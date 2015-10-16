@@ -69,11 +69,10 @@ public class AttributeAdditionMethods {
             return false;
         }
     }
-
+       
     /*
      ATTRIBUTE ADDITION METHODS
      */
-    // Add number to the reference.
     //TODO: KÄYTÄ trim-metodia TRIMMAAMAAN MAHD. WHITESPACE POIS!!!!
     public String addYear() {
         String year = "";

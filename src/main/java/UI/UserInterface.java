@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 import IO.IO;
 import Models.*;
-import UI.AttributeAdditionMethods;
+import java.util.Hashtable;
+import java.util.List;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -29,10 +30,14 @@ public class UserInterface {
     // Object for managing attribute addition to references.
     AttributeAdditionMethods attributes;
 
+    //current bibliography file
+    private File bibFile;
+
     public UserInterface() {
         container = new Container();
         scanner = new Scanner(System.in, "ISO-8859-1");
         attributes = new AttributeAdditionMethods();
+        bibFile = null;
     }
 
     public Container getContainer() {
@@ -40,6 +45,7 @@ public class UserInterface {
     }
 
     public void start() {
+
         System.out.println("MAIN MENU \n");
         System.out.println("You can perform following actions. "
                 + "Press the key in the wave-bracket:");
@@ -47,9 +53,12 @@ public class UserInterface {
         System.out.println("- Add an article reference (A) \n");
         System.out.println("- Add an inproceeding reference (I) \n");
         System.out.println("- List existing references (L) \n");
-        System.out.println("- Export existing references to file (export) \n");
+        System.out.println("- Export references to a file (export) \n");
+        System.out.println("- Change to a different bibtex bibliography saving any changes (C) \n");
         System.out.println("- End the program (press any other key) \n");
-
+        if (bibFile != null) {
+            System.out.println("Currently modifying file: "+ bibFile.getAbsolutePath()+"\n");
+        }
         String answer = this.scanner.nextLine();
 
         if (answer.equals("B")) {
@@ -69,14 +78,102 @@ public class UserInterface {
             answer = scanner.nextLine();
             IO.exportToBibTex(new File(answer), container.listReferences());
             start();
+        } else if (answer.equals("C")) {
+            changeFile();
+            start();
         } else {
             System.out.println("Program ends!");
-            IO.exportToBibTex(new File("bib_data.bib"), container.listReferences());
+            save();
             System.exit(0);
         }
     }
 
-    // Method for adding book reference.
+    public void save() {
+        IO.exportToBibTex(bibFile, container.listReferences());
+    }
+
+    public void changeFile() {
+        if (bibFile != null) {
+            save();
+        }
+
+        boolean cont = true;
+        while (cont) {
+            System.out.println("Choose either to create new bibtex bibliography"
+                    + " (N), modify an existing one (E)");
+            String answer = "";
+            answer = scanner.nextLine();
+            if (answer.equals("N")) {
+                boolean cont2 = true;
+                while (cont2) {
+                    System.out.println("Enter filepath or name if in the same directory; (@abort) to go back");
+                    answer = "";
+                    answer = scanner.nextLine();
+                    File f = new File(answer.trim());
+                    if (answer.equals("@abort")) {
+                        cont2 = false;
+                    } else if (!f.exists()) {
+                        try {
+                            f.createNewFile();
+                        } catch (Exception e) {
+                            System.out.println("Error when trying to create file");
+                        }
+                        container = new Container();
+                        bibFile = f;
+                        cont = false;
+                        cont2 = false;
+                    } else {
+                        System.out.println("File already exists, try again! \n");
+                    }
+                }
+            } else if (answer.equals("E")) {
+                System.out.println("List of .bib files in same directory:\n");
+                List<String> files = IO.listFilesInDirectory(".");
+                if (files != null) {
+                    for (String file : files) {
+                        System.out.println(file);
+                    }
+                }
+
+                boolean cont2 = true;
+                while (cont2) {
+                    System.out.println("Enter filepath or name if in the same directory; (@abort) to go back");
+                    answer = "";
+                    answer = scanner.nextLine();
+                    File f;
+                    f = new File(answer.trim());
+                    if (answer.equals("@abort")) {
+                        cont = true;
+                        cont2 = false;
+                    } else if (f.exists()) {
+                        bibFile = f;
+                        //discard current container
+                        container = new Container();
+                        String references = IO.readBibTexFile(f.getAbsoluteFile());
+                        try {
+                            List<Reference> refs = ReferenceConverter.bibTexToReference(references);
+                            for (Reference ref : refs) {
+                                container.addReference(ref);
+                            }
+                            cont = false;
+                            cont2 = false;
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Selected file is not in bibtex format");
+                            cont2 = false;
+                        }                         
+                        
+
+                    } else {
+                        System.out.println("No such file, try again! \n");
+                    }
+                }
+            } else {
+                System.out.println("Invalid choice, try again! \n");
+            }
+        }
+    }
+// Method for adding book reference.
+
     public void addBookReference() {
         boolean ok = false;
         String choice = "";
@@ -146,53 +243,10 @@ public class UserInterface {
     }
 
     private void addToContainer(Reference ref) {
-        addIdToRef(ref);
         container.addReference(ref);
     }
 
-     
-    /**
-     * Returns the first word from String with words. Words are separated by
-     * either whitespace or comma.
-     *
-     * @param words
-     */
-    private String getFirstWord(String words) {
-        return words.split("[\\s,]")[0];
-    }
-
-    private boolean isDuplicateId(String id) {
-        return container.containsId(id);
-    }
-
-    /**
-     * Adds id field to Reference
-     *
-     * @param ref
-     */
-    private void addIdToRef(Reference ref) {
-        String name="";
-        if (ref.getClass().isAssignableFrom(Book.class)) {
-            Book book = (Book) ref;
-            name = book.getAuthor();
-        } else if (ref.getClass().isAssignableFrom(Article.class)) {
-            Article article = (Article) ref;
-            name = article.getAuthor();
-        } else if (ref.getClass().isAssignableFrom(Inproceeding.class)) {
-            Inproceeding inproceeding = (Inproceeding) ref;
-            name = inproceeding.getAuthor();
-        }
-           
-        long atomicNumber=1;
-        String testId=getFirstWord(name);
-        while(isDuplicateId(testId+atomicNumber)){
-            atomicNumber++;
-        }
-        ref.setId(testId+atomicNumber);
-    }
-
     // Method for adding optional book references.
-
     private Book addOptionalBookReferences(Book book) {
         boolean ok = false;
         String choice = "";

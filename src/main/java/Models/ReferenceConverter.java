@@ -7,8 +7,6 @@ package Models;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  *
@@ -108,7 +106,20 @@ public final class ReferenceConverter {
         return end();
     }
 
-    public static List<Reference> bibTexToReference(String bibTex) {
+    public static List<Reference> bibTexToReference(String bibTex) throws IllegalArgumentException{
+        //@book{id,
+        // author = {jaakko},
+        // title = ...
+        //}
+        boolean testVal = bibTex.matches("(@[a-zA-Z]+[{][\\p{L}]+[0-9]+,([\\s]*[a-zA-Z]+[\\s]*="
+                + "[\\s]*[{][^}]+[}],)+[\\s]*[}][\\s]*)*");
+        //if broken format
+        if(testVal==false)
+            throw new IllegalArgumentException("Not in bibTex format");
+        //if empty
+        if(!bibTex.contains("@")){
+            return new LinkedList();
+        }
         //split by @ char
         String[] publications = bibTex.split("@");
         List<Reference> refs = new LinkedList();

@@ -27,12 +27,8 @@ public class OhtuBibTex {
         UserInterface userInterface = new UserInterface();
         
         Container container = userInterface.getContainer();
-        //Adding some book references
-        String string = IO.readBibTexFile(new File("bib_data.bib"));
-        List<Reference> refs = ReferenceConverter.bibTexToReference(string);
-        for (Reference ref : refs) {
-            container.addReference(ref);
-        }
+        //Prompt user for new or import
+        userInterface.changeFile();
 //        Book book1 = new Book(1997, "Jennifer Lowett", "I Burn For You", "Harlequin");
 //        Book book2 = new Book(1889, "Don Rosa", "Life and Times of Scrooge McDuck", "Nothington");
 //        Book book3 = new Book(2000, "Steve Hackwell", "Fount east of Altaria", "Baen");
@@ -59,6 +55,7 @@ public class OhtuBibTex {
 //        container.addReference(book2);
 //        container.addReference(book3);
 //        userInterface.getContainer().listReferences();
+        
         userInterface.start();    
     }
 }
