@@ -28,7 +28,11 @@ public class OhtuBibTex {
         
         Container container = userInterface.getContainer();
         //Prompt user for new or import
-        userInterface.changeFile();
+        if(!userInterface.changeFile()){
+            System.out.println("\nProgram ends!");
+            return;
+        }
+        
 //        Book book1 = new Book(1997, "Jennifer Lowett", "I Burn For You", "Harlequin");
 //        Book book2 = new Book(1889, "Don Rosa", "Life and Times of Scrooge McDuck", "Nothington");
 //        Book book3 = new Book(2000, "Steve Hackwell", "Fount east of Altaria", "Baen");

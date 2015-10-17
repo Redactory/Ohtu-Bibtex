@@ -89,18 +89,18 @@ public class UserInterface {
     }
 
     public void save() {
-        IO.exportToBibTex(bibFile, container.listReferences());
+        if (bibFile != null) {
+            IO.exportToBibTex(bibFile, container.listReferences());
+        }    
     }
 
-    public void changeFile() {
-        if (bibFile != null) {
-            save();
-        }
+    public boolean changeFile() {
+        
 
         boolean cont = true;
         while (cont) {
             System.out.println("Choose either to create new bibtex bibliography"
-                    + " (N), modify an existing one (E)");
+                    + " (N), modify an existing one (E) or abort (@abort)");
             String answer = "";
             answer = scanner.nextLine();
             if (answer.equals("N")) {
@@ -118,10 +118,11 @@ public class UserInterface {
                         } catch (Exception e) {
                             System.out.println("Error when trying to create file");
                         }
+                        save();
                         container = new Container();
                         bibFile = f;
-                        cont = false;
-                        cont2 = false;
+                        cont=false;
+                        cont2=false;
                     } else {
                         System.out.println("File already exists, try again! \n");
                     }
@@ -146,17 +147,18 @@ public class UserInterface {
                         cont = true;
                         cont2 = false;
                     } else if (f.exists()) {
-                        bibFile = f;
-                        //discard current container
-                        container = new Container();
                         String references = IO.readBibTexFile(f.getAbsoluteFile());
                         try {
                             List<Reference> refs = ReferenceConverter.bibTexToReference(references);
                             for (Reference ref : refs) {
                                 container.addReference(ref);
                             }
-                            cont = false;
-                            cont2 = false;
+                            save();
+                            bibFile = f;
+                            //discard current container
+                            container = new Container();
+                            cont=false;
+                            cont2=false;
                         } catch (IllegalArgumentException e) {
                             System.out.println("Selected file is not in bibtex format");
                             cont2 = false;
@@ -167,10 +169,13 @@ public class UserInterface {
                         System.out.println("No such file, try again! \n");
                     }
                 }
-            } else {
+            } else if(answer.equals("@abort")){
+                return false;
+            }else{
                 System.out.println("Invalid choice, try again! \n");
             }
         }
+        return true;
     }
 // Method for adding book reference.
 
