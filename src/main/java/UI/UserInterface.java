@@ -150,13 +150,13 @@ public class UserInterface {
                         String references = IO.readBibTexFile(f.getAbsoluteFile());
                         try {
                             List<Reference> refs = ReferenceConverter.bibTexToReference(references);
+                            save();
+                            //discard current container after saving
+                            container = new Container();
                             for (Reference ref : refs) {
                                 container.addReference(ref);
-                            }
-                            save();
-                            bibFile = f;
-                            //discard current container
-                            container = new Container();
+                            }  
+                            bibFile = f;                           
                             cont=false;
                             cont2=false;
                         } catch (IllegalArgumentException e) {
