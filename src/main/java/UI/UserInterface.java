@@ -30,6 +30,9 @@ public class UserInterface {
     // Object for managing attribute addition to references.
     AttributeAdditionMethods attributes;
 
+    // Object for search services.
+    Search search;
+
     //current bibliography file
     private File bibFile;
 
@@ -38,6 +41,7 @@ public class UserInterface {
         scanner = new Scanner(System.in, "ISO-8859-1");
         attributes = new AttributeAdditionMethods();
         bibFile = null;
+        search = new Search();
     }
 
     public Container getContainer() {
@@ -45,6 +49,8 @@ public class UserInterface {
     }
 
     public void start() {
+        String answer = "";
+        Reference reference = new Reference();
 
         System.out.println("MAIN MENU \n");
         System.out.println("You can perform following actions. "
@@ -55,11 +61,17 @@ public class UserInterface {
         System.out.println("- List existing references (L) \n");
         System.out.println("- Export references to a file (export) \n");
         System.out.println("- Change to a different bibtex bibliography saving any changes (C) \n");
+        System.out.println("- find a reference though it's reference-id (find) \n");
+        System.out.println("- Delete existing reference by it's id (delete) \n");
         System.out.println("- End the program (press any other key) \n");
+
         if (bibFile != null) {
-            System.out.println("Currently modifying file: "+ bibFile.getAbsolutePath()+"\n");
+            System.out.println("Currently modifying file: " + bibFile.getAbsolutePath() + "\n");
         }
-        String answer = this.scanner.nextLine();
+//        String answer = this.scanner.nextLine();
+        if (answer.isEmpty()) {
+            answer = this.scanner.nextLine();
+        }
 
         if (answer.equals("B")) {
             addBookReference();
@@ -78,9 +90,14 @@ public class UserInterface {
             answer = scanner.nextLine();
             IO.exportToBibTex(new File(answer), container.listReferences());
             start();
+        
         } else if (answer.equals("C")) {
             changeFile();
             start();
+        } else if (answer.equals("find")) {
+            reference = search.findReference();
+        } else if (answer.equals("delete")) {
+            search.deleteReference();
         } else {
             System.out.println("Program ends!");
             save();
@@ -91,11 +108,10 @@ public class UserInterface {
     public void save() {
         if (bibFile != null) {
             IO.exportToBibTex(bibFile, container.listReferences());
-        }    
+        }
     }
 
     public boolean changeFile() {
-        
 
         boolean cont = true;
         while (cont) {
@@ -121,8 +137,8 @@ public class UserInterface {
                         save();
                         container = new Container();
                         bibFile = f;
-                        cont=false;
-                        cont2=false;
+                        cont = false;
+                        cont2 = false;
                     } else {
                         System.out.println("File already exists, try again! \n");
                     }
@@ -155,23 +171,22 @@ public class UserInterface {
                             container = new Container();
                             for (Reference ref : refs) {
                                 container.addReference(ref);
-                            }  
-                            bibFile = f;                           
-                            cont=false;
-                            cont2=false;
+                            }
+                            bibFile = f;
+                            cont = false;
+                            cont2 = false;
                         } catch (IllegalArgumentException e) {
                             System.out.println("Selected file is not in bibtex format");
                             cont2 = false;
-                        }                         
-                        
+                        }
 
                     } else {
                         System.out.println("No such file, try again! \n");
                     }
                 }
-            } else if(answer.equals("@abort")){
+            } else if (answer.equals("@abort")) {
                 return false;
-            }else{
+            } else {
                 System.out.println("Invalid choice, try again! \n");
             }
         }

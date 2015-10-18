@@ -77,7 +77,7 @@ public class ReferenceConverterTest {
         instance.setAuthor("Minna Juoni");
         instance.setId("Minna1");
         instance.setTitle("Hiton Bibtex");
-        instance.setJournal("kinostuksen ‰ss‰lehti");
+        instance.setJournal("kinostuksen √§ss√§lehti");
         instance.setYear(12345678);
         instance.setVolume("5.");
         instance.setNumber(9);

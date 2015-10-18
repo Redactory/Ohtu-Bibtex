@@ -27,6 +27,7 @@ public class OhtuBibTex {
         UserInterface userInterface = new UserInterface();
         
         Container container = userInterface.getContainer();
+
         //Prompt user for new or import
         if(!userInterface.changeFile()){
             System.out.println("\nProgram ends!");
