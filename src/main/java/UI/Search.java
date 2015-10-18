@@ -43,13 +43,14 @@ public class Search {
     }
 
     // Method for deleting reference from system.
-    public void deleteReference() {
+    public void deleteReference() {        
         String string = "";
         String answer = "";
         String ref_id = "";
         boolean ok = false;
 
-        string = IO.readBibTexFile(new File("bib_data.bib"));
+        File file = new File("bib_data.bib");
+        string = IO.readBibTexFile(file);
         List<Reference> references = ReferenceConverter.bibTexToReference(string);
 
         // finding out needed reference-id for deleting reference.
@@ -61,11 +62,13 @@ public class Search {
             // List references if needed.
             if (answer.equals("Y")) {
                 for(Reference r : references){
-                    System.out.println(r);
+                    System.out.println(r.getId());
                 }
             } else {
                 System.out.println("Give Id of the to-be-deleted reference.\n ");
                 ref_id = scanner.nextLine();
+                
+                ok= true;
             }
         }
 
@@ -74,6 +77,7 @@ public class Search {
                 references.remove(r);
             }
         }
-
+        
+        IO.exportToBibTex(file, references);
     }
 }
