@@ -1,6 +1,7 @@
 package UI;
 
 import java.io.File;
+import java.util.Map;
 import java.util.Scanner;
 
 import IO.IO;
@@ -53,6 +54,8 @@ public class UserInterface {
         System.out.println("- Add an article reference (A) \n");
         System.out.println("- Add an inproceeding reference (I) \n");
         System.out.println("- List existing references (L) \n");
+        System.out.println("- List existing references by writer (Lw) \n");
+        System.out.println("- List existing references by publisher (Lp) \n");
         System.out.println("- Export references to a file (export) \n");
         System.out.println("- Change to a different bibtex bibliography saving any changes (C) \n");
         System.out.println("- End the program (press any other key) \n");
@@ -72,6 +75,16 @@ public class UserInterface {
                 System.out.println(ReferenceConverter.toBibTex(ref));
             }
             start();
+        } else if(answer.equals("Lw")){
+            System.out.println("Enter writer:");
+            answer = "";
+            answer = scanner.nextLine();
+            getWriter(answer);
+        } else if(answer.equals("Lp")){
+            System.out.println("Enter publisher:");
+            answer = "";
+            answer = scanner.nextLine();
+            getPublisher(answer);
         } else if (answer.equals("export")) {
             System.out.println("Enter filename:");
             answer = "";
@@ -776,5 +789,50 @@ public class UserInterface {
         }
 
         return inproceeding;
+    }
+
+    public void getWriter(String writer){
+        Hashtable<String,Reference> r = container.getReferences();
+        for(Map.Entry<String,Reference> reffi : r.entrySet()){
+           String s = ReferenceConverter.toBibTex(reffi.getValue());
+           String[] ss = s.split(",");
+           String[] sss = ss[1].split(" ");
+            // 4 ja 5
+           String etu = sss[4].substring(1);
+           String suku = sss[5].substring(0, sss[5].length() - 1);
+           String kokonimi = etu.concat(" ").concat(suku);
+
+           if(kokonimi.equals(writer)){
+               System.out.println();
+               System.out.println(ReferenceConverter
+                       .toBibTex(
+                               reffi.getValue()
+                       )
+               );
+           }
+        }
+        start();
+    }
+
+    public void getPublisher(String publisher){
+        Hashtable<String,Reference> r = container.getReferences();
+        for(Map.Entry<String,Reference> reffi : r.entrySet()){
+            String s = ReferenceConverter.toBibTex(reffi.getValue());
+            String[] ss = s.split(",");
+            String[] sss = ss[3].split(" ");
+            //5
+            String cleanBraces = sss[5]
+                    .substring(1)
+                    .substring(0, sss[5].length() -1);
+            if(publisher.equals(cleanBraces)){
+                System.out.println(
+                        ReferenceConverter
+                            .toBibTex(
+                                    reffi.getValue()
+                            )
+                );
+            }
+        }
+        start();
     }
 }

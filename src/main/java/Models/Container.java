@@ -31,7 +31,7 @@ public class Container {
     // Add reference to reference to database.
     public void addReference(Reference r) {
         if(r.getId()==null){
-            addIdToRef(r);;
+            addIdToRef(r);
         }      
         references.put(r.getId(), r);
     }
