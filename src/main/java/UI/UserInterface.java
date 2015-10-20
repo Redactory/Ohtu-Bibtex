@@ -55,7 +55,7 @@ public class UserInterface {
 
         System.out.println("MAIN MENU \n");
         System.out.println("You can perform following actions. "
-                + "Press the key in the wave-bracket:");
+                + "Press the key in the wave-bracket:\n\n");
         System.out.println("- Add a book reference (B) \n");
         System.out.println("- Add an article reference (A) \n");
         System.out.println("- Add an inproceeding reference (I) \n");
