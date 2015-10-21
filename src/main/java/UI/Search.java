@@ -6,6 +6,7 @@
 package UI;
 
 import IO.IO;
+import Models.Container;
 import Models.Reference;
 import Models.ReferenceConverter;
 import java.io.File;
@@ -20,8 +21,11 @@ public class Search {
 
     private Scanner scanner;
     
+    private Container container;
+    
     public Search() {
         scanner = new Scanner(System.in, "ISO-8859-1");
+        container = new Container();
     }
 
     // Method for finding wanted reference.
@@ -30,8 +34,9 @@ public class Search {
         String ref_id = "";
         Reference reference = new Reference();
 
-        string = IO.readBibTexFile(new File("bib_data.bib"));
-        List<Reference> references = ReferenceConverter.bibTexToReference(string);
+//        string = IO.readBibTexFile(new File("bib_data.bib"));
+//        List<Reference> references = ReferenceConverter.bibTexToReference(string);
+        List<Reference> references = container.listReferences();
 
         for (Reference r : references) {
             if (r.getId().equals(ref_id)) {
@@ -43,15 +48,17 @@ public class Search {
     }
 
     // Method for deleting reference from system.
-    public void deleteReference() {        
+    public void deleteReference() {
+        Reference reference = new Reference();
         String string = "";
         String answer = "";
         String ref_id = "";
         boolean ok = false;
 
-        File file = new File("bib_data.bib");
-        string = IO.readBibTexFile(file);
-        List<Reference> references = ReferenceConverter.bibTexToReference(string);
+//        File file = new File("bib_data.bib");
+//        string = IO.readBibTexFile(file);
+//        List<Reference> references = ReferenceConverter.bibTexToReference(string);
+        List<Reference> references = container.listReferences();
 
         // finding out needed reference-id for deleting reference.
         while (ok == false) {
@@ -74,10 +81,12 @@ public class Search {
 
         for (Reference r : references) {
             if (r.getId().equals(ref_id)) {
-                references.remove(r);
+                reference = r;
+//                references.remove(r);
             }
         }
         
-        IO.exportToBibTex(file, references);
+        references.remove(reference);
+//        IO.exportToBibTex(file, references);
     }
 }
