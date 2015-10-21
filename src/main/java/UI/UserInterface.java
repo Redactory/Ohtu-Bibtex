@@ -853,6 +853,8 @@ public class UserInterface {
             }
         }
         start();
+    }
+    
     //metodin viitetietojen muokkaamista varten
     public void updateReference() {
 
@@ -863,14 +865,7 @@ public class UserInterface {
         System.out.println("Give the reference ID you want to modify. \n");
         String choice = scanner.nextLine();
 
-        // TODO Fix This after search method is available 
-        List<Reference> list = container.listReferences();
-        Reference ref = null;
-        for (Reference r : list) {
-            if (r.getClass() == Book.class) {
-                ref = r;
-            }
-        }
+        Reference ref = container.getReference(choice);
 
         if (ref.getClass() == Article.class) {
             Article article = (Article) ref;

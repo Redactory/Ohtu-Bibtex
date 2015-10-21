@@ -25,6 +25,10 @@ public class Container {
     public Hashtable getReferences() {
         return references;
     }
+    
+    public Reference getReference(String id) {
+        return references.get(id);
+    }
 
     // Add reference to reference to database.
     public void addReference(Reference r) {
