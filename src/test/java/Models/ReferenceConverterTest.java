@@ -65,8 +65,9 @@ public class ReferenceConverterTest {
         
         String s = ReferenceConverter.inproceedingToBibTex(instance);
         //regex matching
-        boolean testVal = matchRegex(s, "@inproceedings[{][\\p{L}]+[0-9]+,([\\s]*[a-zA-Z]+[\\s]*="
-                + "[\\s]*[{][^}]+[}],)+[\\s]*[}][\\s]*");
+        boolean testVal = matchRegex(s, "@inproceedings[{][\\p{L}_]+[0-9]*,([\\s]*[a-zA-Z]+[\\s]*="
+                + "[\\s]*[{\"][^}\"]+[}\"],)+([\\s]*[a-zA-Z]+[\\s]*="
+                + "[\\s]*[{\"][^}\"]+[}\"])?[\\s]*[}][\\s]*");
         assertTrue("String is not in BibTex format", testVal);
     }
     
@@ -87,8 +88,9 @@ public class ReferenceConverterTest {
         
         String s = ReferenceConverter.articleToBibTex(instance);
         //regex matching
-        boolean testVal = matchRegex(s, "@article[{][\\p{L}]+[0-9]+,([\\s]*[a-zA-Z]+[\\s]*="
-                + "[\\s]*[{][^}]+[}],)+[\\s]*[}][\\s]*");
+        boolean testVal = matchRegex(s, "@article[{][\\p{L}_]+[0-9]*,([\\s]*[a-zA-Z]+[\\s]*="
+                + "[\\s]*[{\"][^}\"]+[}\"],)+([\\s]*[a-zA-Z]+[\\s]*="
+                + "[\\s]*[{\"][^}\"]+[}\"])?[\\s]*[}][\\s]*");
         assertTrue("String is not in BibTex format", testVal);
     }
 
@@ -99,8 +101,9 @@ public class ReferenceConverterTest {
         instance.setId("Jaakko1");
         String s = ReferenceConverter.bookToBibTex(instance);
         //regex matching
-        boolean testVal = matchRegex(s, "@book[{][\\p{L}]+[0-9]+,([\\s]*[a-zA-Z]+[\\s]*="
-                + "[\\s]*[{][^}]+[}],)+[\\s]*[}][\\s]*");
+        boolean testVal = matchRegex(s, "@book[{][\\p{L}_]+[0-9]*,([\\s]*[a-zA-Z]+[\\s]*="
+                + "[\\s]*[{\"][^}\"]+[}\"],)+([\\s]*[a-zA-Z]+[\\s]*="
+                + "[\\s]*[{\"][^}\"]+[}\"])?[\\s]*[}][\\s]*");
         assertTrue("String is not in BibTex format", testVal);
     }
 }

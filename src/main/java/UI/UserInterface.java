@@ -95,9 +95,16 @@ public class UserInterface {
             changeFile();
             start();
         } else if (answer.equals("find")) {
-            reference = search.findReference();
+            System.out.println("Enter reference id:");
+            answer = "";
+            answer = scanner.nextLine();
+            reference = search.findReference(container,answer);
+            if(reference != null)
+            System.out.println(ReferenceConverter.toBibTex(reference));
+            start();
         } else if (answer.equals("delete")) {
-            search.deleteReference();
+            search.deleteReference(container);
+            start();
         } else {
             System.out.println("Program ends!");
             save();

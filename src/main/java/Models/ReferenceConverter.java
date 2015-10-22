@@ -111,8 +111,11 @@ public final class ReferenceConverter {
         // author = {jaakko},
         // title = ...
         //}
-        boolean testVal = bibTex.matches("(@[a-zA-Z]+[{][\\p{L}]+[0-9]+,([\\s]*[a-zA-Z]+[\\s]*="
-                + "[\\s]*[{][^}]+[}],)+[\\s]*[}][\\s]*)*");
+        
+        boolean testVal = bibTex.matches("(@[a-zA-Z]+[{][\\p{L}_]+[0-9]*,"
+                + "([\\s]*[a-zA-Z]+[\\s]*=[\\s]*(([{\"][^\"}]+[}\"])|[^\\r\\n]+),)+"
+                + "([\\s]*[a-zA-Z]+[\\s]*=[\\s]*(([{\"][^\"}]+[}\"])|[^\\n\\r]+))?"
+                + "[\\s]*[}][\\s]*)*");
         //if broken format
         if(testVal==false)
             throw new IllegalArgumentException("Not in bibTex format");
@@ -134,38 +137,44 @@ public final class ReferenceConverter {
 
             //extract attributes from the rest of the lines
             for (int j = 1; j < lines.length; j++) {
-                lines[j] = lines[j].replaceAll("\\{|\\}", "").trim();
+                lines[j] = lines[j].replaceAll("\\{|\\}|\"", "").trim();
                 if (lines[j].length() > 0 && lines[j].charAt(lines[j].length() - 1) == ',') {
                     lines[j] = lines[j].substring(0, lines[j].length() - 1);
                 }
             }
             //construct Reference model
-            if (refAndId[0].equals("book")) {
+            if (refAndId[0].toLowerCase().equals("book")) {
                 Book b = new Book();
                 b.setId(refAndId[1]);
                 for (int j = 1; j < lines.length - 1; j++) {
+                    if(lines[j].equals(""))//skip empty lines
+                        continue;
                     String[] attrs = lines[j].split("=");
-                    attrs[0] = attrs[0].trim();
+                    attrs[0] = attrs[0].trim().toLowerCase();
                     attrs[1] = attrs[1].trim();
                     addFieldToBook(b, attrs[0], attrs[1]);
                 }
                 refs.add(b);
-            } else if (refAndId[0].equals("inproceedings")) {
+            } else if (refAndId[0].toLowerCase().equals("inproceedings")) {
                 Inproceeding in = new Inproceeding();
                 in.setId(refAndId[1]);
                 for (int j = 1; j < lines.length - 1; j++) {
+                    if(lines[j].equals(""))//skip empty lines
+                        continue;
                     String[] attrs = lines[j].split("=");
-                    attrs[0] = attrs[0].trim();
+                    attrs[0] = attrs[0].trim().toLowerCase();
                     attrs[1] = attrs[1].trim();
                     addFieldToInproceedings(in, attrs[0], attrs[1]);
                 }
                 refs.add(in);
-            } else if (refAndId[0].equals("article")) {
+            } else if (refAndId[0].toLowerCase().equals("article")) {
                 Article a = new Article();
                 a.setId(refAndId[1]);
                 for (int j = 1; j < lines.length - 1; j++) {
+                    if(lines[j].equals(""))//skip empty lines
+                        continue;
                     String[] attrs = lines[j].split("=");
-                    attrs[0] = attrs[0].trim();
+                    attrs[0] = attrs[0].trim().toLowerCase();
                     attrs[1] = attrs[1].trim();
                     addFieldToArticle(a, attrs[0], attrs[1]);
                 }

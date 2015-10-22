@@ -21,19 +21,14 @@ public class Search {
 
     private Scanner scanner;
     
-    private Container container;
-    
     public Search() {
         scanner = new Scanner(System.in, "ISO-8859-1");
-        container = new Container();
+
     }
 
     // Method for finding wanted reference.
-    public Reference findReference() {
-        String string = "";
-        String ref_id = "";
-        Reference reference = new Reference();
-
+    public Reference findReference(Container container,String ref_id) {
+        Reference reference = null;
 //        string = IO.readBibTexFile(new File("bib_data.bib"));
 //        List<Reference> references = ReferenceConverter.bibTexToReference(string);
         List<Reference> references = container.listReferences();
@@ -48,7 +43,7 @@ public class Search {
     }
 
     // Method for deleting reference from system.
-    public void deleteReference() {
+    public void deleteReference(Container container) {
         Reference reference = new Reference();
         String string = "";
         String answer = "";
@@ -78,15 +73,15 @@ public class Search {
                 ok= true;
             }
         }
-
+        //finding correct reference.
         for (Reference r : references) {
             if (r.getId().equals(ref_id)) {
                 reference = r;
-//                references.remove(r);
+                System.out.println("Found reference "+ref_id);
             }
         }
-        
-        references.remove(reference);
-//        IO.exportToBibTex(file, references);
+        //deleting reference from
+        container.deleteReference(reference);
+        System.out.println("Deleted reference "+ref_id);
     }
 }
