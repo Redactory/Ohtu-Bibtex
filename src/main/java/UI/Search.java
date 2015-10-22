@@ -6,6 +6,7 @@
 package UI;
 
 import IO.IO;
+import Models.Container;
 import Models.Reference;
 import Models.ReferenceConverter;
 import java.io.File;
@@ -19,9 +20,11 @@ import java.util.Scanner;
 public class Search {
 
     private Scanner scanner;
+    private Container container;
     
     public Search() {
         scanner = new Scanner(System.in, "ISO-8859-1");
+        container = new Container();
     }
 
     // Method for finding wanted reference.
@@ -30,6 +33,8 @@ public class Search {
         String ref_id = "";
         Reference reference = new Reference();
 
+        
+        
         string = IO.readBibTexFile(new File("bib_data.bib"));
         List<Reference> references = ReferenceConverter.bibTexToReference(string);
 

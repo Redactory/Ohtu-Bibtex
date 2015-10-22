@@ -29,7 +29,7 @@ public class AttributeAdditionMethods {
      REGEX-CHECK METHODS
      */
     // Regex-method for checking years.
-    private boolean checkNumbers(String year) {
+    public boolean checkNumbers(String year) {
         regex = "[0-9]+";
 
         if (year.matches(regex)) {
@@ -60,6 +60,7 @@ public class AttributeAdditionMethods {
     private boolean checkFieldsWithNumbers(String field) {
         //any letter(no special characters), numbers 0-9, char '-' and any number of spaces between any of them 
         regex = "([\\p{L}0-9[-]]+[\\s]*)+";
+        
 
         if (field.matches(regex)) {
             return true;
