@@ -1,6 +1,10 @@
-/nbproject/private
+.gitignore
+nbproject/*
+target/*
 /build/
 /dist/
 
 /target/
 /nbproject/
+
+/.iml/

@@ -1,6 +1,7 @@
 package UI;
 
 import java.io.File;
+import java.util.Map;
 import java.util.Scanner;
 
 import IO.IO;
@@ -58,7 +59,10 @@ public class UserInterface {
         System.out.println("- Add a book reference (B) \n");
         System.out.println("- Add an article reference (A) \n");
         System.out.println("- Add an inproceeding reference (I) \n");
+        System.out.println("- Update a reference (U) \n");
         System.out.println("- List existing references (L) \n");
+        System.out.println("- List existing references by writer (Lw) \n");
+        System.out.println("- List existing references by publisher (Lp) \n");
         System.out.println("- Export references to a file (export) \n");
         System.out.println("- Change to a different bibtex bibliography saving any changes (C) \n");
         System.out.println("- find a reference though it's reference-id (find) \n");
@@ -79,11 +83,24 @@ public class UserInterface {
             addArticleReference();
         } else if (answer.equals("I")) {
             addInproceedingReference();
+        } else if (answer.equals("U")) {
+            updateReference();
+            start();
         } else if (answer.equals("L")) {
             for (Reference ref : this.container.listReferences()) {
                 System.out.println(ReferenceConverter.toBibTex(ref));
             }
             start();
+        } else if(answer.equals("Lw")){
+            System.out.println("Enter writer:");
+            answer = "";
+            answer = scanner.nextLine();
+            getWriter(answer);
+        } else if(answer.equals("Lp")){
+            System.out.println("Enter publisher:");
+            answer = "";
+            answer = scanner.nextLine();
+            getPublisher(answer);
         } else if (answer.equals("export")) {
             System.out.println("Enter filename:");
             answer = "";
@@ -791,5 +808,246 @@ public class UserInterface {
         }
 
         return inproceeding;
+    }
+
+    public void getWriter(String writer){
+        Hashtable<String,Reference> r = container.getReferences();
+        for(Map.Entry<String,Reference> reffi : r.entrySet()){
+           String s = ReferenceConverter.toBibTex(reffi.getValue());
+           String[] ss = s.split(",");
+           String[] sss = ss[1].split(" ");
+            // 4 ja 5
+           String etu = sss[4].substring(1);
+           String suku = sss[5].substring(0, sss[5].length() - 1);
+           String kokonimi = etu.concat(" ").concat(suku);
+
+           if(kokonimi.equals(writer)){
+               System.out.println();
+               System.out.println(ReferenceConverter
+                       .toBibTex(
+                               reffi.getValue()
+                       )
+               );
+           }
+        }
+        start();
+    }
+
+    public void getPublisher(String publisher){
+        Hashtable<String,Reference> r = container.getReferences();
+        for(Map.Entry<String,Reference> reffi : r.entrySet()){
+            String s = ReferenceConverter.toBibTex(reffi.getValue());
+            String[] ss = s.split(",");
+            String[] sss = ss[3].split(" ");
+            //5
+            String cleanBraces = sss[5]
+                    .substring(1)
+                    .substring(0, sss[5].length() -1);
+            if(publisher.equals(cleanBraces)){
+                System.out.println(
+                        ReferenceConverter
+                            .toBibTex(
+                                    reffi.getValue()
+                            )
+                );
+            }
+        }
+        start();
+    }
+    
+    //metodin viitetietojen muokkaamista varten
+    public void updateReference() {
+
+        //kysytään mitä viitettä halutaan muokata
+        //haetaan haluttu viite
+        //kysytään mikä kohta halutaan muokta
+        //kysytään niin kauan, kunnes käyttäjä sanoo, että haluaa poistua
+        System.out.println("Give the reference ID you want to modify. \n");
+        String choice = scanner.nextLine();
+
+        Reference ref = container.getReference(choice);
+
+        if (ref.getClass() == Article.class) {
+            Article article = (Article) ref;
+
+            Integer line = 1;
+
+            while (line != 0) {
+                System.out.println("Current data in article:");
+                System.out.println("1) Author: " + article.getAuthor());
+                System.out.println("2) Title: " + article.getTitle());
+                System.out.println("3) Journal: " + article.getJournal());
+                System.out.println("4) Year: " + article.getYear());
+                System.out.println("5) Volume: " + article.getVolume());
+                System.out.println("6) Number: " + article.getNumber());
+                System.out.println("7) Pages: " + article.getPages());
+                System.out.println("8) Month: " + article.getMonth());
+                System.out.println("9) Note: " + article.getNote() + "\n");
+
+                System.out.println("Which line (number 1-9) do you want to update or do you want to leave (0)? \n");
+                line = scanner.nextInt();
+                String cr = scanner.nextLine();
+
+                if (line == 4 || line == 6) {
+                    System.out.println("Give new value: ");
+                    Integer number = scanner.nextInt();
+                    cr = scanner.nextLine();
+                    if (line == 4) {
+                        article.setYear(number);
+                    } else if (line == 6) {
+                        article.setNumber(number);
+                    }
+
+                } else if (line > 0 && line < 4 || line == 5 || line > 6 && line < 10) {
+                    System.out.println("Give new value: ");
+                    String value = scanner.nextLine();
+
+                    if (line == 1) {
+                        article.setAuthor(value);
+                    } else if (line == 2) {
+                        article.setTitle(value);
+                    } else if (line == 3) {
+                        article.setJournal(value);
+                    } else if (line == 5) {
+                        article.setVolume(value);
+                    } else if (line == 7) {
+                        article.setPages(value);
+                    } else if (line == 8) {
+                        article.setMonth(value);
+                    } else if (line == 9) {
+                        article.setNote(value);
+                    }
+                }
+
+            }
+
+        } else if (ref.getClass() == Book.class) {
+            Book book = (Book) ref;
+
+            Integer line = 1;
+
+            while (line != 0) {
+                System.out.println("Current data in book reference:");
+                System.out.println("1) Year: " + book.getYear());
+                System.out.println("2) Author: " + book.getAuthor());
+                System.out.println("3) Editor: " + book.getEditor());
+                System.out.println("4) Title: " + book.getTitle());
+                System.out.println("5) Publisher: " + book.getPublisher());
+                System.out.println("6) Volume: " + book.getVolume());
+                System.out.println("7) Number: " + book.getNumber());
+                System.out.println("8) Series: " + book.getSeries());
+                System.out.println("9) Address: " + book.getAddress());
+                System.out.println("10) Edition: " + book.getEdition());
+                System.out.println("11) Month: " + book.getMonth());
+                System.out.println("12) Note: " + book.getNote() + "\n");
+
+                System.out.println("Which line (number 1-12) do you want to update or do you want to leave (0)? \n");
+                line = scanner.nextInt();
+                String cr = scanner.nextLine();
+
+                if (line == 1) {
+                    System.out.println("Give new value: ");
+                    Integer number = scanner.nextInt();
+                    cr = scanner.nextLine();
+                    book.setYear(number);
+
+                } else if (line > 1 && line < 13) {
+                    System.out.println("Give new value: ");
+                    String value = scanner.nextLine();
+
+                    if (line == 2) {
+                        book.setAuthor(value);
+                    } else if (line == 3) {
+                        book.setEditor(value);
+                    } else if (line == 4) {
+                        book.setTitle(value);
+                    } else if (line == 5) {
+                        book.setPublisher(value);
+                    } else if (line == 6) {
+                        book.setVolume(value);
+                    } else if (line == 7) {
+                        book.setNumber(value);
+                    } else if (line == 8) {
+                        book.setSeries(value);
+                    } else if (line == 9) {
+                        book.setAddress(value);
+                    } else if (line == 10) {
+                        book.setEdition(value);
+                    } else if (line == 11) {
+                        book.setMonth(value);
+                    } else if (line == 12) {
+                        book.setNote(value);
+                    }
+                }
+            }
+        } else if (ref.getClass() == Inproceeding.class) {
+
+            Inproceeding inproceeding = (Inproceeding) ref;
+
+            Integer line = 1;
+
+            while (line != 0) {
+                System.out.println("Current data in Inproceeding:");
+                System.out.println("1) Author: " + inproceeding.getAuthor());
+                System.out.println("2) Title: " + inproceeding.getTitle());
+                System.out.println("3) Booktitle: " + inproceeding.getBooktitle());
+                System.out.println("4) Year: " + inproceeding.getYear());
+                System.out.println("5) Editor: " + inproceeding.getEditor());
+                System.out.println("6) Volume: " + inproceeding.getVolume());
+                System.out.println("7) Number: " + inproceeding.getNumber());
+                System.out.println("8) Series: " + inproceeding.getSeries());
+                System.out.println("9) Pages: " + inproceeding.getPages());
+                System.out.println("10) Address: " + inproceeding.getAddress());
+                System.out.println("11) Month: " + inproceeding.getMonth());
+                System.out.println("12) Organization: " + inproceeding.getOrganization());
+                System.out.println("13) Publisher: " + inproceeding.getPublisher());
+                System.out.println("14) Note: " + inproceeding.getNote() + "\n");
+      
+                System.out.println("Which line (number 1-14) do you want to update or do you want to leave (0)? \n");
+                line = scanner.nextInt();
+                String cr = scanner.nextLine();
+
+                if (line == 4 || line == 7) {
+                    System.out.println("Give new value: ");
+                    Integer number = scanner.nextInt();
+                    cr = scanner.nextLine();
+                    if (line == 4) {
+                        inproceeding.setYear(number);
+                    } else if (line == 7) {
+                        inproceeding.setNumber(number);
+                    }
+
+                } else if (line > 0 && line < 4 || line == 5 || line == 6 || line > 7 && line < 15) {
+                    System.out.println("Give new value: ");
+                    String value = scanner.nextLine();
+
+                    if (line == 1) {
+                        inproceeding.setAuthor(value);
+                    } else if (line == 2) {
+                        inproceeding.setTitle(value);
+                    } else if (line == 3) {
+                        inproceeding.setBooktitle(value);
+                    } else if (line == 5) {
+                        inproceeding.setEditor(value);
+                    } else if (line == 6) {
+                        inproceeding.setVolume(value);
+                    } else if (line == 8) {
+                        inproceeding.setSeries(value);
+                    } else if (line == 9) {
+                        inproceeding.setPages(value);
+                    } else if (line == 10) {
+                        inproceeding.setAddress(value);
+                    } else if (line == 11) {
+                        inproceeding.setMonth(value);
+                    } else if (line == 12) {
+                        inproceeding.setOrganization(value);
+                    } else if (line == 13) {
+                        inproceeding.setPublisher(value);
+                    } else if (line == 14) {
+                        inproceeding.setNote(value);
+                    }
+                }
+            }
+        }
     }
 }
