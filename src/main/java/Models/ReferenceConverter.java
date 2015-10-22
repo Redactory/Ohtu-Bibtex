@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.Models;
+package Models;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -35,7 +38,7 @@ public final class ReferenceConverter {
     }
 
     public static String inproceedingToBibTex(Inproceeding i) {
-        begin("inproceedings", i.getReference_id().toString());
+        begin("inproceedings", i.getId());
         add("author", i.getAuthor());
         add("title", i.getTitle());
         add("booktitle", i.getBooktitle());
@@ -59,7 +62,7 @@ public final class ReferenceConverter {
     }
 
     public static String articleToBibTex(Article a) {
-        begin("article", a.getReference_id().toString());
+        begin("article", a.getId());
         //class incomplete
         add("author", a.getAuthor());
         add("title", a.getTitle());
@@ -85,7 +88,7 @@ public final class ReferenceConverter {
      * @return
      */
     public static String bookToBibTex(Book b) {
-        begin("book", b.getReference_id().toString());
+        begin("book", b.getId());
         add("author", b.getAuthor());
         add("editor", b.getEditor());
         add("title", b.getTitle());
@@ -101,6 +104,163 @@ public final class ReferenceConverter {
         add("month", b.getMonth());
         add("note", b.getNote());
         return end();
+    }
+
+    public static List<Reference> bibTexToReference(String bibTex) throws IllegalArgumentException{
+        //@book{id,
+        // author = {jaakko},
+        // title = ...
+        //}
+        boolean testVal = bibTex.matches("(@[a-zA-Z]+[{][\\p{L}]+[0-9]+,([\\s]*[a-zA-Z]+[\\s]*="
+                + "[\\s]*[{][^}]+[}],)+[\\s]*[}][\\s]*)*");
+        //if broken format
+        if(testVal==false)
+            throw new IllegalArgumentException("Not in bibTex format");
+        //if empty
+        if(!bibTex.contains("@")){
+            return new LinkedList();
+        }
+        //split by @ char
+        String[] publications = bibTex.split("@");
+        List<Reference> refs = new LinkedList();
+
+        for (int i = 1; i < publications.length; i++) {
+            String publication = publications[i];
+            String[] lines = publication.split("\\n");
+
+            //extract ref name and id into refAndId array from first line
+            String[] refAndId = lines[0].split("\\{");
+            refAndId[1] = refAndId[1].replaceAll(",", "").trim();
+
+            //extract attributes from the rest of the lines
+            for (int j = 1; j < lines.length; j++) {
+                lines[j] = lines[j].replaceAll("\\{|\\}", "").trim();
+                if (lines[j].length() > 0 && lines[j].charAt(lines[j].length() - 1) == ',') {
+                    lines[j] = lines[j].substring(0, lines[j].length() - 1);
+                }
+            }
+            //construct Reference model
+            if (refAndId[0].equals("book")) {
+                Book b = new Book();
+                b.setId(refAndId[1]);
+                for (int j = 1; j < lines.length - 1; j++) {
+                    String[] attrs = lines[j].split("=");
+                    attrs[0] = attrs[0].trim();
+                    attrs[1] = attrs[1].trim();
+                    addFieldToBook(b, attrs[0], attrs[1]);
+                }
+                refs.add(b);
+            } else if (refAndId[0].equals("inproceedings")) {
+                Inproceeding in = new Inproceeding();
+                in.setId(refAndId[1]);
+                for (int j = 1; j < lines.length - 1; j++) {
+                    String[] attrs = lines[j].split("=");
+                    attrs[0] = attrs[0].trim();
+                    attrs[1] = attrs[1].trim();
+                    addFieldToInproceedings(in, attrs[0], attrs[1]);
+                }
+                refs.add(in);
+            } else if (refAndId[0].equals("article")) {
+                Article a = new Article();
+                a.setId(refAndId[1]);
+                for (int j = 1; j < lines.length - 1; j++) {
+                    String[] attrs = lines[j].split("=");
+                    attrs[0] = attrs[0].trim();
+                    attrs[1] = attrs[1].trim();
+                    addFieldToArticle(a, attrs[0], attrs[1]);
+                }
+                refs.add(a);
+            }
+        }
+        return refs;
+    }
+
+    private static void addFieldToInproceedings(Inproceeding i, String attr, String val) {
+        if (attr.equals("year")) {
+            i.setYear(Integer.parseInt(val));
+        } else if (attr.equals("author")) {
+            i.setAuthor(val);
+        } else if (attr.equals("editor")) {
+            i.setEditor(val);
+        } else if (attr.equals("title")) {
+            i.setTitle(val);
+        } else if (attr.equals("booktitle")) {
+            i.setBooktitle(val);
+        } else if (attr.equals("publisher")) {
+            i.setPublisher(val);
+        } else if (attr.equals("volume")) {
+            i.setVolume(val);
+        } else if (attr.equals("number")) {
+            i.setNumber(Integer.parseInt(val));
+        } else if (attr.equals("series")) {
+            i.setSeries(val);
+        } else if (attr.equals("pages")) {
+            i.setPages(val);
+        } else if (attr.equals("address")) {
+            i.setAddress(val);
+        } else if (attr.equals("organization")) {
+            i.setOrganization(val);
+        } else if (attr.equals("month")) {
+            i.setMonth(val);
+        } else if (attr.equals("note")) {
+            i.setNote(val);
+        } else {
+            System.out.println("Unspecified attribute name: " + attr);
+        }
+    }
+
+    private static void addFieldToArticle(Article a, String attr, String val) {
+        if (attr.equals("year")) {
+            a.setYear(Integer.parseInt(val));
+        } else if (attr.equals("author")) {
+            a.setAuthor(val);
+        } else if (attr.equals("title")) {
+            a.setTitle(val);
+        } else if (attr.equals("journal")) {
+            a.setJournal(val);
+        } else if (attr.equals("volume")) {
+            a.setVolume(val);
+        } else if (attr.equals("number")) {
+            a.setNumber(Integer.parseInt(val));
+        } else if (attr.equals("pages")) {
+            a.setPages(val);
+        } else if (attr.equals("month")) {
+            a.setMonth(val);
+        } else if (attr.equals("note")) {
+            a.setNote(val);
+        } else {
+            System.out.println("Unspecified attribute name: " + attr);
+        }
+    }
+
+    private static void addFieldToBook(Book b, String attr, String val) {
+        if (attr.equals("year")) {
+            b.setYear(Integer.parseInt(val));
+        } else if (attr.equals("author")) {
+            b.setAuthor(val);
+        } else if (attr.equals("editor")) {
+            b.setEditor(val);
+        } else if (attr.equals("title")) {
+            b.setTitle(val);
+        } else if (attr.equals("publisher")) {
+            b.setPublisher(val);
+        } else if (attr.equals("volume")) {
+            b.setVolume(val);
+        } else if (attr.equals("number")) {
+            b.setNumber(val);
+        } else if (attr.equals("series")) {
+            b.setSeries(val);
+        } else if (attr.equals("address")) {
+            b.setAddress(val);
+        } else if (attr.equals("edition")) {
+            b.setEdition(val);
+        } else if (attr.equals("month")) {
+            b.setMonth(val);
+        } else if (attr.equals("note")) {
+            b.setNote(val);
+        } else {
+            System.out.println("Unspecified attribute name: " + attr);
+        }
     }
 
     /**

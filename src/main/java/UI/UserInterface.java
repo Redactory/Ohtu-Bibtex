@@ -1,11 +1,13 @@
-package main.java.UI;
+package UI;
 
 import java.io.File;
-import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
-import main.java.IO.IO;
-import main.java.Models.*;
+import IO.IO;
+import Models.*;
+import java.util.Hashtable;
+import java.util.List;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -29,10 +31,18 @@ public class UserInterface {
     // Object for managing attribute addition to references.
     AttributeAdditionMethods attributes;
 
+    // Object for search services.
+    Search search;
+
+    //current bibliography file
+    private File bibFile;
+
     public UserInterface() {
         container = new Container();
-        scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in, "ISO-8859-1");
         attributes = new AttributeAdditionMethods();
+        bibFile = null;
+        search = new Search();
     }
 
     public Container getContainer() {
@@ -40,19 +50,32 @@ public class UserInterface {
     }
 
     public void start() {
+        String answer = "";
+        Reference reference = new Reference();
 
         System.out.println("MAIN MENU \n");
         System.out.println("You can perform following actions. "
-                + "Press the key in the wave-bracket:");
+                + "Press the key in the wave-bracket:\n\n");
         System.out.println("- Add a book reference (B) \n");
         System.out.println("- Add an article reference (A) \n");
         System.out.println("- Add an inproceeding reference (I) \n");
         System.out.println("- Update a reference (U) \n");
         System.out.println("- List existing references (L) \n");
-        System.out.println("- Export existing references to file (export) \n");
+        System.out.println("- List existing references by writer (Lw) \n");
+        System.out.println("- List existing references by publisher (Lp) \n");
+        System.out.println("- Export references to a file (export) \n");
+        System.out.println("- Change to a different bibtex bibliography saving any changes (C) \n");
+        System.out.println("- find a reference though it's reference-id (find) \n");
+        System.out.println("- Delete existing reference by it's id (delete) \n");
         System.out.println("- End the program (press any other key) \n");
 
-        String answer = this.scanner.nextLine();
+        if (bibFile != null) {
+            System.out.println("Currently modifying file: " + bibFile.getAbsolutePath() + "\n");
+        }
+//        String answer = this.scanner.nextLine();
+        if (answer.isEmpty()) {
+            answer = this.scanner.nextLine();
+        }
 
         if (answer.equals("B")) {
             addBookReference();
@@ -68,19 +91,126 @@ public class UserInterface {
                 System.out.println(ReferenceConverter.toBibTex(ref));
             }
             start();
+        } else if(answer.equals("Lw")){
+            System.out.println("Enter writer:");
+            answer = "";
+            answer = scanner.nextLine();
+            getWriter(answer);
+        } else if(answer.equals("Lp")){
+            System.out.println("Enter publisher:");
+            answer = "";
+            answer = scanner.nextLine();
+            getPublisher(answer);
         } else if (answer.equals("export")) {
             System.out.println("Enter filename:");
             answer = "";
             answer = scanner.nextLine();
             IO.exportToBibTex(new File(answer), container.listReferences());
             start();
+        
+        } else if (answer.equals("C")) {
+            changeFile();
+            start();
+        } else if (answer.equals("find")) {
+            reference = search.findReference();
+        } else if (answer.equals("delete")) {
+            search.deleteReference();
         } else {
             System.out.println("Program ends!");
+            save();
             System.exit(0);
         }
     }
 
-    // Method for adding book reference.
+    public void save() {
+        if (bibFile != null) {
+            IO.exportToBibTex(bibFile, container.listReferences());
+        }
+    }
+
+    public boolean changeFile() {
+
+        boolean cont = true;
+        while (cont) {
+            System.out.println("Choose either to create new bibtex bibliography"
+                    + " (N), modify an existing one (E) or abort (@abort)");
+            String answer = "";
+            answer = scanner.nextLine();
+            if (answer.equals("N")) {
+                boolean cont2 = true;
+                while (cont2) {
+                    System.out.println("Enter filepath or name if in the same directory; (@abort) to go back");
+                    answer = "";
+                    answer = scanner.nextLine();
+                    File f = new File(answer.trim());
+                    if (answer.equals("@abort")) {
+                        cont2 = false;
+                    } else if (!f.exists()) {
+                        try {
+                            f.createNewFile();
+                        } catch (Exception e) {
+                            System.out.println("Error when trying to create file");
+                        }
+                        save();
+                        container = new Container();
+                        bibFile = f;
+                        cont = false;
+                        cont2 = false;
+                    } else {
+                        System.out.println("File already exists, try again! \n");
+                    }
+                }
+            } else if (answer.equals("E")) {
+                System.out.println("List of .bib files in same directory:\n");
+                List<String> files = IO.listFilesInDirectory(".");
+                if (files != null) {
+                    for (String file : files) {
+                        System.out.println(file);
+                    }
+                }
+
+                boolean cont2 = true;
+                while (cont2) {
+                    System.out.println("Enter filepath or name if in the same directory; (@abort) to go back");
+                    answer = "";
+                    answer = scanner.nextLine();
+                    File f;
+                    f = new File(answer.trim());
+                    if (answer.equals("@abort")) {
+                        cont = true;
+                        cont2 = false;
+                    } else if (f.exists()) {
+                        String references = IO.readBibTexFile(f.getAbsoluteFile());
+                        try {
+                            List<Reference> refs = ReferenceConverter.bibTexToReference(references);
+                            save();
+                            //discard current container after saving
+                            container = new Container();
+                            for (Reference ref : refs) {
+                                container.addReference(ref);
+                            }
+                            bibFile = f;
+                            cont = false;
+                            cont2 = false;
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Selected file is not in bibtex format");
+                            cont2 = false;
+                        }
+
+                    } else {
+                        System.out.println("No such file, try again! \n");
+                    }
+                }
+            } else if (answer.equals("@abort")) {
+                return false;
+            } else {
+                System.out.println("Invalid choice, try again! \n");
+            }
+        }
+        return true;
+    }
+// Method for adding book reference.
+
     public void addBookReference() {
         boolean ok = false;
         String choice = "";
@@ -137,14 +267,20 @@ public class UserInterface {
             }
 
         }
+        // Add reference_id based on author name
+
         // Attribute definition ends, book is created.
-        container.addReference(book);
+        addToContainer(book);
 
         System.out.println("new book reference has been created!");
         System.out.println("There are now " + this.container.getReferences().size()
                 + " references in the system.");
 
         start();
+    }
+
+    private void addToContainer(Reference ref) {
+        container.addReference(ref);
     }
 
     // Method for adding optional book references.
@@ -328,7 +464,7 @@ public class UserInterface {
         }
 
         // Attribute definition ends, article is created.
-        container.addReference(article);
+        addToContainer(article);
 
         System.out.println("A new article reference has been created!");
         System.out.println("There are now " + this.container.getReferences().size()
@@ -486,7 +622,7 @@ public class UserInterface {
         }
 
         // Attribute definition ends, article is created.
-        container.addReference(inproceeding);
+        addToContainer(inproceeding);
 
         System.out.println("A new inproceeding reference has been created!");
         System.out.println("There are now " + this.container.getReferences().size()
@@ -674,6 +810,51 @@ public class UserInterface {
         return inproceeding;
     }
 
+    public void getWriter(String writer){
+        Hashtable<String,Reference> r = container.getReferences();
+        for(Map.Entry<String,Reference> reffi : r.entrySet()){
+           String s = ReferenceConverter.toBibTex(reffi.getValue());
+           String[] ss = s.split(",");
+           String[] sss = ss[1].split(" ");
+            // 4 ja 5
+           String etu = sss[4].substring(1);
+           String suku = sss[5].substring(0, sss[5].length() - 1);
+           String kokonimi = etu.concat(" ").concat(suku);
+
+           if(kokonimi.equals(writer)){
+               System.out.println();
+               System.out.println(ReferenceConverter
+                       .toBibTex(
+                               reffi.getValue()
+                       )
+               );
+           }
+        }
+        start();
+    }
+
+    public void getPublisher(String publisher){
+        Hashtable<String,Reference> r = container.getReferences();
+        for(Map.Entry<String,Reference> reffi : r.entrySet()){
+            String s = ReferenceConverter.toBibTex(reffi.getValue());
+            String[] ss = s.split(",");
+            String[] sss = ss[3].split(" ");
+            //5
+            String cleanBraces = sss[5]
+                    .substring(1)
+                    .substring(0, sss[5].length() -1);
+            if(publisher.equals(cleanBraces)){
+                System.out.println(
+                        ReferenceConverter
+                            .toBibTex(
+                                    reffi.getValue()
+                            )
+                );
+            }
+        }
+        start();
+    }
+    
     //metodin viitetietojen muokkaamista varten
     public void updateReference() {
 
@@ -684,14 +865,7 @@ public class UserInterface {
         System.out.println("Give the reference ID you want to modify. \n");
         String choice = scanner.nextLine();
 
-        // TODO Fix This after search method is available 
-        List<Reference> list = container.listReferences();
-        Reference ref = null;
-        for (Reference r : list) {
-            if (r.getClass() == Book.class) {
-                ref = r;
-            }
-        }
+        Reference ref = container.getReference(choice);
 
         if (ref.getClass() == Article.class) {
             Article article = (Article) ref;

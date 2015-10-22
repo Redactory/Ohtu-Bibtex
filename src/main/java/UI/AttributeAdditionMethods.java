@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.UI;
+package UI;
 
+import Models.Article;
+import Models.Book;
+import Models.Inproceeding;
+import Models.Reference;
 import java.util.Scanner;
 
 /**
@@ -39,8 +43,9 @@ public class AttributeAdditionMethods {
 
     // Regex-check for fields that have only alphabet-characters.
     private boolean checkFieldsWithoutNumbers(String field) {
-        regex = "([a-zA-Z[-]]+[\\s]*)+";
-
+//        regex = "([a-zA-Z[-]]+[\\s]*+[\\p{L}]+)+";
+        
+        regex = "([\\p{L}[-]]+[\\s]*)+";
         if (field.matches(regex)) {
             return true;
         } else {
@@ -53,7 +58,8 @@ public class AttributeAdditionMethods {
 
     // Regex-check for fields that have both characters and numbers.
     private boolean checkFieldsWithNumbers(String field) {
-        regex = "([a-zA-Z0-9[-]]+[\\s]*)+";
+        //any letter(no special characters), numbers 0-9, char '-' and any number of spaces between any of them 
+        regex = "([\\p{L}0-9[-]]+[\\s]*)+";
 
         if (field.matches(regex)) {
             return true;
@@ -63,11 +69,10 @@ public class AttributeAdditionMethods {
             return false;
         }
     }
-
+       
     /*
      ATTRIBUTE ADDITION METHODS
      */
-    // Add number to the reference.
     //TODO: KÄYTÄ trim-metodia TRIMMAAMAAN MAHD. WHITESPACE POIS!!!!
     public String addYear() {
         String year = "";

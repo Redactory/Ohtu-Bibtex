@@ -1,8 +1,8 @@
-package main.java.Models;
+package Models;
 
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
-import main.java.Models.Generator;
+import Models.Generator;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
