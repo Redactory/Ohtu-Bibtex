@@ -20,7 +20,6 @@ import java.util.Scanner;
 public class Search {
 
     private Scanner scanner;
-    
     private Container container;
     
     public Search() {
@@ -37,6 +36,7 @@ public class Search {
 //        string = IO.readBibTexFile(new File("bib_data.bib"));
 //        List<Reference> references = ReferenceConverter.bibTexToReference(string);
         List<Reference> references = container.listReferences();
+
 
         for (Reference r : references) {
             if (r.getId().equals(ref_id)) {

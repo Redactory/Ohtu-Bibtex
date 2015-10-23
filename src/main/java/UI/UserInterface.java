@@ -91,12 +91,12 @@ public class UserInterface {
                 System.out.println(ReferenceConverter.toBibTex(ref));
             }
             start();
-        } else if(answer.equals("Lw")){
+        } else if (answer.equals("Lw")) {
             System.out.println("Enter writer:");
             answer = "";
             answer = scanner.nextLine();
             getWriter(answer);
-        } else if(answer.equals("Lp")){
+        } else if (answer.equals("Lp")) {
             System.out.println("Enter publisher:");
             answer = "";
             answer = scanner.nextLine();
@@ -107,7 +107,7 @@ public class UserInterface {
             answer = scanner.nextLine();
             IO.exportToBibTex(new File(answer), container.listReferences());
             start();
-        
+
         } else if (answer.equals("C")) {
             changeFile();
             start();
@@ -810,51 +810,51 @@ public class UserInterface {
         return inproceeding;
     }
 
-    public void getWriter(String writer){
-        Hashtable<String,Reference> r = container.getReferences();
-        for(Map.Entry<String,Reference> reffi : r.entrySet()){
-           String s = ReferenceConverter.toBibTex(reffi.getValue());
-           String[] ss = s.split(",");
-           String[] sss = ss[1].split(" ");
+    public void getWriter(String writer) {
+        Hashtable<String, Reference> r = container.getReferences();
+        for (Map.Entry<String, Reference> reffi : r.entrySet()) {
+            String s = ReferenceConverter.toBibTex(reffi.getValue());
+            String[] ss = s.split(",");
+            String[] sss = ss[1].split(" ");
             // 4 ja 5
-           String etu = sss[4].substring(1);
-           String suku = sss[5].substring(0, sss[5].length() - 1);
-           String kokonimi = etu.concat(" ").concat(suku);
+            String etu = sss[4].substring(1);
+            String suku = sss[5].substring(0, sss[5].length() - 1);
+            String kokonimi = etu.concat(" ").concat(suku);
 
-           if(kokonimi.equals(writer)){
-               System.out.println();
-               System.out.println(ReferenceConverter
-                       .toBibTex(
-                               reffi.getValue()
-                       )
-               );
-           }
+            if (kokonimi.equals(writer)) {
+                System.out.println();
+                System.out.println(ReferenceConverter
+                        .toBibTex(
+                                reffi.getValue()
+                        )
+                );
+            }
         }
         start();
     }
 
-    public void getPublisher(String publisher){
-        Hashtable<String,Reference> r = container.getReferences();
-        for(Map.Entry<String,Reference> reffi : r.entrySet()){
+    public void getPublisher(String publisher) {
+        Hashtable<String, Reference> r = container.getReferences();
+        for (Map.Entry<String, Reference> reffi : r.entrySet()) {
             String s = ReferenceConverter.toBibTex(reffi.getValue());
             String[] ss = s.split(",");
             String[] sss = ss[3].split(" ");
             //5
             String cleanBraces = sss[5]
                     .substring(1)
-                    .substring(0, sss[5].length() -1);
-            if(publisher.equals(cleanBraces)){
+                    .substring(0, sss[5].length() - 1);
+            if (publisher.equals(cleanBraces)) {
                 System.out.println(
                         ReferenceConverter
-                            .toBibTex(
-                                    reffi.getValue()
-                            )
+                        .toBibTex(
+                                reffi.getValue()
+                        )
                 );
             }
         }
         start();
     }
-    
+
     //metodin viitetietojen muokkaamista varten
     public void updateReference() {
 
@@ -966,7 +966,12 @@ public class UserInterface {
                     } else if (line == 6) {
                         book.setVolume(value);
                     } else if (line == 7) {
-                        book.setNumber(value);
+                        boolean ok = attributes.checkNumbers(value);
+                        if (ok) {
+                            book.setNumber(value);
+                        } else {
+                            System.out.println("No a number!");
+                        }
                     } else if (line == 8) {
                         book.setSeries(value);
                     } else if (line == 9) {
@@ -1002,7 +1007,7 @@ public class UserInterface {
                 System.out.println("12) Organization: " + inproceeding.getOrganization());
                 System.out.println("13) Publisher: " + inproceeding.getPublisher());
                 System.out.println("14) Note: " + inproceeding.getNote() + "\n");
-      
+
                 System.out.println("Which line (number 1-14) do you want to update or do you want to leave (0)? \n");
                 line = scanner.nextInt();
                 String cr = scanner.nextLine();
